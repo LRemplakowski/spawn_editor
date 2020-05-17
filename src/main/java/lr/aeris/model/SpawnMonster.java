@@ -19,7 +19,31 @@ public class SpawnMonster {
     private Integer cr;
     private Integer special;
     @Column(name = "base_type")
-    private Integer baseType;
+    private String baseType;
     @Column(name = "special_loot")
-    private Integer specialLoot;
+    private String specialLoot;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getResref() {
+        return resref;
+    }
+
+    public Integer getCr() {
+        return cr;
+    }
+
+    public Integer getSpecial() {
+        return special;
+    }
+
+    public String getBaseType() {
+        return baseType;
+    }
+
+    public String getSpecialLoot() {
+        return specialLoot;
+    }
 }

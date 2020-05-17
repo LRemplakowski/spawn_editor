@@ -5,6 +5,7 @@ import lr.aeris.repositories.SpawnAreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,5 +19,12 @@ public class SpawnAreaService {
 
     public List<SpawnArea> findAllAreas(){
         return repository.findAll();
+    }
+
+    public List<String> getAllAreatags(){
+        List<SpawnArea> areaList = findAllAreas();
+        List<String> result = new ArrayList<>();
+        areaList.forEach(a -> result.add(a.getAreatag()));
+        return result;
     }
 }

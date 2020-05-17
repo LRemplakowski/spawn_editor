@@ -1,6 +1,7 @@
 package lr.aeris.model;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "spawn_area_list")
 @Data
 @NoArgsConstructor
+@Getter
 public class SpawnArea {
     @Id
     private String areatag;
@@ -21,4 +23,32 @@ public class SpawnArea {
     private Integer maxMobs;
     private Integer hasSpawn;
     private Integer cooldown;
+
+    public String getAreatag() {
+        return areatag;
+    }
+
+    public Integer getCrMin() {
+        return crMin;
+    }
+
+    public Integer getCrMax() {
+        return crMax;
+    }
+
+    public Integer getMinMobs() {
+        return minMobs;
+    }
+
+    public Integer getMaxMobs() {
+        return maxMobs;
+    }
+
+    public Integer getHasSpawn() {
+        return hasSpawn;
+    }
+
+    public Integer getCooldown() {
+        return cooldown;
+    }
 }
