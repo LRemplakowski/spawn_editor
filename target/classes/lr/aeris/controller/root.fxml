@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lr.aeris.controller.RootController">
+    <children>
+        <TextField fx:id="city" layoutX="87.0" layoutY="148.0" prefHeight="159.0" prefWidth="331.0" promptText="Kaj ma być">
+            <font>
+                <Font size="38.0" />
+            </font>
+        </TextField>
+        <Label alignment="CENTER" layoutX="87.0" layoutY="366.0" prefHeight="41.0" prefWidth="173.0" text="Beje tak gorko:">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="temperature" layoutX="260.0" layoutY="360.0" prefHeight="53.0" prefWidth="75.0" text="">
+            <font>
+                <Font name="System Bold" size="23.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

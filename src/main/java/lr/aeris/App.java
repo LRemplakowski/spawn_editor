@@ -1,30 +1,46 @@
 package lr.aeris;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import javafx.scene.*;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.*;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Hello world!
  *
  */
+@SpringBootApplication
+@EnableJpaRepositories
 public class App extends Application
 {
-    public static void main( String[] args )
-    {
-        launch(args);
+    private ConfigurableApplicationContext context;
+
+    @Override
+    public void init() throws Exception {
+        this.context = new SpringApplicationBuilder()
+                .sources(App.class)
+                .run(getParameters().getRaw().toArray(new String[0]));
     }
 
     @Override
-    public void start (Stage primaryStage) throws Exception
+    public void start(Stage primaryStage) throws Exception {
+        context.publishEvent(new StageReadyEvent(primaryStage));
+    }
+
+    @Override
+    public void stop() throws Exception {
+        this.context.close();
+        Platform.exit();
+    }
+
+    public static void main( String[] args )
     {
-        Parent root =
-                FXMLLoader.load(
-                        getClass()
-                                .getResource("/root.fxml"));
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+
+        Application.launch(App.class, args);
     }
 }
