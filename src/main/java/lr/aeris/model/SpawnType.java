@@ -8,10 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "spawn_pairs")
+@Table(name = "spawn_types")
 @Data
 @NoArgsConstructor
 public class SpawnType {
     @Id
     private String type;
+
+    public String getType() {
+        return type;
+    }
 }

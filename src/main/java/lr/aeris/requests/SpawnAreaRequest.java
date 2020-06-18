@@ -24,8 +24,6 @@ public class SpawnAreaRequest {
 
     public SpawnAreaRequest(String areatag, String crMin, String crMax, String minMobs, String maxMobs, Boolean hasSpawn, String cooldown) {
         this.areatag = areatag;
-//        System.out.println("MinCr inside contructor: "+crMin);
-//        System.out.println("Integer.getInteger returns "+Integer.valueOf(crMin));
         this.crMin = !crMin.equals("") ? Integer.valueOf(crMin) : Integer.MIN_VALUE;
         this.crMax = !crMax.equals("") ? Integer.valueOf(crMax) : Integer.MAX_VALUE;
         this.minMobs = !minMobs.equals("") ? Integer.valueOf(crMin) : Integer.MIN_VALUE;

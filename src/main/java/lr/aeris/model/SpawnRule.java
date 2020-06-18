@@ -19,4 +19,12 @@ public class SpawnRule implements Serializable {
     private String rule;
     @Id
     private String areatag;
+
+    public String getRule() {
+        return rule;
+    }
+
+    public String getAreatag() {
+        return areatag;
+    }
 }

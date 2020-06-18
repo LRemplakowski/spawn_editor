@@ -3,7 +3,7 @@ package lr.aeris;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import lr.aeris.controller.RootController;
+import lr.aeris.controler.RootControler;
 import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -22,7 +22,7 @@ public class PrimaryStageInitializer implements ApplicationListener<StageReadyEv
     @Override
     public void onApplicationEvent(StageReadyEvent event) {
         Stage stage = event.stage;
-        Scene scene = new Scene(fxWeaver.loadView(RootController.class));
+        Scene scene = new Scene(fxWeaver.loadView(RootControler.class));
         stage.setScene(scene);
         stage.setTitle("Spawn Editor v0.1");
         stage.getIcons().add(new Image(PrimaryStageInitializer.class.getResourceAsStream("/icon.png")));

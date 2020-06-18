@@ -12,8 +12,8 @@ import java.util.List;
 public interface SpawnRuleRepository extends JpaRepository<SpawnRule, String> {
 
     @Query(value = "SELECT r FROM SpawnRule r WHERE r.rule=:rule AND r.areatag=:areatag")
-    List<SpawnType> findByRuleAndAreatag(String rule, String areatag);
+    List<SpawnRule> findByRuleAndAreatag(String rule, String areatag);
 
     @Query(value = "SELECT r FROM SpawnRule r WHERE r.areatag=:areatag")
-    List<SpawnType> findByAreatag(String areatag);
+    List<SpawnRule> findByAreatag(String areatag);
 }

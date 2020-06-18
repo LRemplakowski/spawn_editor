@@ -49,4 +49,28 @@ public class SpawnArea {
     public Integer getCooldown() {
         return cooldown;
     }
+
+    public void setCrmin(Integer crmin) {
+        this.crmin = crmin;
+    }
+
+    public void setCrmax(Integer crmax) {
+        this.crmax = crmax;
+    }
+
+    public void setMinmobs(Integer minmobs) {
+        this.minmobs = minmobs;
+    }
+
+    public void setMaxmobs(Integer maxmobs) {
+        this.maxmobs = maxmobs;
+    }
+
+    public void setHasspawn(Integer hasspawn) {
+        this.hasspawn = hasspawn;
+    }
+
+    public void setCooldown(Integer cooldown) {
+        this.cooldown = cooldown;
+    }
 }
