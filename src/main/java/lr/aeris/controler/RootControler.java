@@ -17,6 +17,10 @@ import lr.aeris.service.SpawnTypeService;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 @Component
 @FxmlView("root.fxml")
 public class RootControler {
@@ -193,6 +197,7 @@ public class RootControler {
         ObservableList<String> observableList = FXCollections.observableList(areaService.getAllAreatags());
         areaList.setItems(observableList);
         clearAreaSelection();
+        areaList.setDisable(false);
     }
 
     @FXML
@@ -210,6 +215,7 @@ public class RootControler {
         ObservableList<String> observableList = FXCollections.observableList(areaService.findByQuery(request));
         areaList.setItems(observableList);
         clearAreaSelection();
+        areaList.setDisable(false);
     }
 
     @FXML
@@ -220,31 +226,59 @@ public class RootControler {
     @FXML
     public void onAddRule(){
         String rule = selectedRuleList.getSelectionModel().getSelectedItem();
-        if (!rule.equals("")){
-            selectedAreaRuleList.getItems().add(rule);
+        if (rule != null && !rule.equals("")){
+            if(selectedAreaRuleList.getItems() != null){
+                selectedAreaRuleList.getItems().add(rule);
+            } else {
+                List<String> newList = new ArrayList<>();
+                newList.add(rule);
+                selectedAreaRuleList.setItems(FXCollections.observableList(newList));
+            }
             selectedRuleList.getItems().remove(rule);
+            FXCollections.sort(selectedAreaRuleList.getItems());
         }
     }
 
     @FXML
     public void onAddRuleAll(){
-        selectedAreaRuleList.getItems().addAll(selectedRuleList.getItems());
-        selectedRuleList.setItems(null);
+        if(selectedRuleList.getItems() != null) {
+            if (selectedAreaRuleList.getItems() != null) {
+                selectedAreaRuleList.getItems().addAll(selectedRuleList.getItems());
+            } else {
+                selectedAreaRuleList.setItems(selectedRuleList.getItems());
+            }
+            selectedRuleList.setItems(null);
+            FXCollections.sort(selectedAreaRuleList.getItems());
+        }
     }
 
     @FXML
     public void onRemoveRule(){
         String rule = selectedAreaRuleList.getSelectionModel().getSelectedItem();
-        if (!rule.equals("")){
-            selectedRuleList.getItems().add(rule);
+        if(rule != null && !rule.equals("")) {
+            if (selectedRuleList.getItems() != null) {
+                selectedRuleList.getItems().add(rule);
+            } else {
+                List<String> newList = new ArrayList<>();
+                newList.add(rule);
+                selectedRuleList.setItems(FXCollections.observableList(newList));
+            }
             selectedAreaRuleList.getItems().remove(rule);
+            FXCollections.sort(selectedRuleList.getItems());
         }
     }
 
     @FXML
     public void onRemoveRuleAll(){
-        selectedRuleList.getItems().addAll(selectedAreaRuleList.getItems());
-        selectedAreaRuleList.setItems(null);
+        if(selectedAreaRuleList.getItems() != null) {
+            if (selectedRuleList.getItems() != null) {
+                selectedRuleList.getItems().addAll(selectedAreaRuleList.getItems());
+            } else {
+                selectedRuleList.setItems(selectedAreaRuleList.getItems());
+            }
+            selectedAreaRuleList.setItems(null);
+            FXCollections.sort(selectedRuleList.getItems());
+        }
     }
 
     @FXML
@@ -258,7 +292,14 @@ public class RootControler {
                 .setCooldown(Integer.valueOf(getSelectedCooldown().getText()))
                 .setSpawnRules(selectedAreaRuleList.getItems())
                 .build();
-        areaService.SaveEditedArea(request);
+        areaService.saveEditedArea(request);
+        ruleService.saveEditedSpawnRules(request);
+    }
+
+    @FXML
+    public void onButtonReset(){
+        clearAreaSelection();
+        areaList.setDisable(false);
     }
 
     public ListView<String> getAreaList() {

@@ -50,5 +50,6 @@ public class SelectAreaHandler implements EventHandler<MouseEvent> {
         List<String> otherRules = typeService.findTypesOtherThan(areaRules);
         rootControler.getSelectedRuleList().setItems(FXCollections.observableList(otherRules));
         rootControler.setSelectedAreaFieldsDisabled(false);
+        rootControler.getAreaList().setDisable(true);
     }
 }

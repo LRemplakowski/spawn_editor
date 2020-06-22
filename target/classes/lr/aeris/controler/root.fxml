@@ -166,7 +166,7 @@
                               </TitledPane>
                               <ButtonBar layoutX="104.0" layoutY="503.0" prefHeight="40.0" prefWidth="264.0">
                                 <buttons>
-                                  <Button fx:id="buttonReject" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Odrzuć zmiany" translateX="-48.0" />
+                                  <Button fx:id="buttonReject" mnemonicParsing="false" onAction="#onButtonReset" prefHeight="25.0" prefWidth="104.0" text="Odrzuć zmiany" translateX="-48.0" />
                                     <Button fx:id="buttonSave" layoutX="140.0" layoutY="18.0" mnemonicParsing="false" onAction="#onButtonSave" text="Zapisz" />
                                 </buttons>
                               </ButtonBar>
@@ -179,8 +179,7 @@
                <content>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="23.0" prefWidth="97.0" text="Lista potworów:" />
-                        <ListView fx:id="monsterList" prefHeight="215.0" prefWidth="248.0" />
+                        <Pane layoutX="44.0" layoutY="30.0" prefHeight="259.0" prefWidth="247.0" />
                      </children>
                   </Pane>
                </content>

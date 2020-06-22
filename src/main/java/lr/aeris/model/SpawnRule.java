@@ -1,5 +1,6 @@
 package lr.aeris.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,5 +27,10 @@ public class SpawnRule implements Serializable {
 
     public String getAreatag() {
         return areatag;
+    }
+
+    public SpawnRule(String rule, String areatag) {
+        this.rule = rule;
+        this.areatag = areatag;
     }
 }

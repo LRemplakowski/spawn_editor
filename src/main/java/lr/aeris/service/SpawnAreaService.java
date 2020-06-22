@@ -6,6 +6,7 @@ import lr.aeris.requests.ChangeAreaRequest;
 import lr.aeris.requests.SpawnAreaRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,8 @@ public class SpawnAreaService {
         return result;
     }
 
-    public void SaveEditedArea(ChangeAreaRequest request){
+    @Transactional
+    public void saveEditedArea(ChangeAreaRequest request){
         Optional<SpawnArea> found = repository.findById(request.getAreatag());
         System.out.println("Looking for area");
         if(found.isPresent()){

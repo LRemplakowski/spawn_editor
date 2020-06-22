@@ -20,7 +20,7 @@ public class SpawnTypeService {
 
     public List<String> findTypesOtherThan(List<String> types){
         List<String> result = new ArrayList<>();
-        if(types.size() > 0){
+        if(!types.isEmpty()){
             repository.findByTypeNotIn(types).forEach(t -> result.add(t.getType()));
         } else {
             repository.findAll().forEach(t -> result.add(t.getType()));

@@ -3,6 +3,7 @@ package lr.aeris.requests;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeAreaRequest {
@@ -13,6 +14,7 @@ public class ChangeAreaRequest {
     private Integer maxMobs;
     private Integer hasSpawn;
     private Integer cooldown;
+    private List<String> spawnRules;
 
     private ChangeAreaRequest(ChangeAreaRequestBuilder builder) {
         this.areatag = builder.areatag;
@@ -22,6 +24,7 @@ public class ChangeAreaRequest {
         this.maxMobs = builder.maxMobs;
         this.hasSpawn = builder.hasSpawn;
         this.cooldown = builder.cooldown;
+        this.spawnRules = builder.spawnRules;
     }
 
     public String getAreatag() {
@@ -50,6 +53,10 @@ public class ChangeAreaRequest {
 
     public Integer getCooldown() {
         return cooldown;
+    }
+
+    public List<String> getSpawnRules() {
+        return spawnRules;
     }
 
     public static class ChangeAreaRequestBuilder {
@@ -101,7 +108,7 @@ public class ChangeAreaRequest {
         }
 
         public ChangeAreaRequestBuilder setSpawnRules(List<String> spawnRules){
-            this.spawnRules = spawnRules;
+            this.spawnRules = spawnRules != null ? spawnRules : new ArrayList<>();
             return this;
         }
 
