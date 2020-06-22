@@ -1,4 +1,4 @@
-package lr.aeris.controler;
+package lr.aeris.controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,12 +18,11 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Component
-@FxmlView("root.fxml")
-public class RootControler {
+@FxmlView("areaPage.fxml")
+public class AreaPageController {
 
     private final SpawnAreaService areaService;
     private final SpawnRuleService ruleService;
@@ -32,8 +31,6 @@ public class RootControler {
 
     @FXML
     private ListView<String> areaList;
-    @FXML
-    private ListView<String> monsterList;
 
     @FXML
     private TextField queryAreatag;
@@ -88,7 +85,7 @@ public class RootControler {
     @FXML
     private Button buttonSave;
 
-    public RootControler(SpawnAreaService areaService, SpawnRuleService ruleService, SpawnTypeService typeService, SpawnMonsterService monsterService) {
+    public AreaPageController(SpawnAreaService areaService, SpawnRuleService ruleService, SpawnTypeService typeService, SpawnMonsterService monsterService) {
         this.areaService = areaService;
         this.ruleService = ruleService;
         this.typeService = typeService;
