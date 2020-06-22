@@ -27,7 +27,6 @@ public class AreaPageController {
     private final SpawnAreaService areaService;
     private final SpawnRuleService ruleService;
     private final SpawnTypeService typeService;
-    private final SpawnMonsterService monsterService;
 
     @FXML
     private ListView<String> areaList;
@@ -85,11 +84,10 @@ public class AreaPageController {
     @FXML
     private Button buttonSave;
 
-    public AreaPageController(SpawnAreaService areaService, SpawnRuleService ruleService, SpawnTypeService typeService, SpawnMonsterService monsterService) {
+    public AreaPageController(SpawnAreaService areaService, SpawnRuleService ruleService, SpawnTypeService typeService) {
         this.areaService = areaService;
         this.ruleService = ruleService;
         this.typeService = typeService;
-        this.monsterService = monsterService;
     }
 
     @FXML

@@ -27,4 +27,10 @@ public class SpawnTypeService {
         }
         return result;
     }
+
+    public List<String> findAllTypes(){
+        List<String> result = new ArrayList<>();
+        repository.findAll().forEach(t -> result.add(t.getType()));
+        return result;
+    }
 }
