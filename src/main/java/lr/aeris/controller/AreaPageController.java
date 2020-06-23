@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import lr.aeris.eventHandlers.SelectAreaHandler;
+import lr.aeris.model.SpawnArea;
 import lr.aeris.requests.ChangeAreaRequest;
 import lr.aeris.requests.SpawnAreaRequest;
 import lr.aeris.service.SpawnAreaService;
@@ -29,7 +30,7 @@ public class AreaPageController {
     private final SpawnTypeService typeService;
 
     @FXML
-    private ListView<String> areaList;
+    private ListView<SpawnArea> areaList;
 
     @FXML
     private TextField queryAreatag;
@@ -189,7 +190,7 @@ public class AreaPageController {
 
     @FXML
     public void findAllButton(){
-        ObservableList<String> observableList = FXCollections.observableList(areaService.getAllAreatags());
+        ObservableList<SpawnArea> observableList = FXCollections.observableList(areaService.getAllAreas());
         areaList.setItems(observableList);
         clearAreaSelection();
         areaList.setDisable(false);
@@ -207,7 +208,7 @@ public class AreaPageController {
                 queryHasspawn.isSelected(),
                 queryCooldown.getText());
         System.out.println(request.toString());
-        ObservableList<String> observableList = FXCollections.observableList(areaService.findByQuery(request));
+        ObservableList<SpawnArea> observableList = FXCollections.observableList(areaService.findByQuery(request));
         areaList.setItems(observableList);
         clearAreaSelection();
         areaList.setDisable(false);
@@ -297,7 +298,7 @@ public class AreaPageController {
         areaList.setDisable(false);
     }
 
-    public ListView<String> getAreaList() {
+    public ListView<SpawnArea> getAreaList() {
         return areaList;
     }
 

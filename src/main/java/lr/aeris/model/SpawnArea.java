@@ -73,4 +73,9 @@ public class SpawnArea {
     public void setCooldown(Integer cooldown) {
         this.cooldown = cooldown;
     }
+
+    @Override
+    public String toString() {
+        return areatag;
+    }
 }

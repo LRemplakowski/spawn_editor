@@ -33,6 +33,10 @@ public class SpawnAreaService {
         return result;
     }
 
+    public List<SpawnArea> getAllAreas(){
+        return repository.findAll();
+    }
+
     public List<String> findByPartialAreatag(String areatag){
         List<SpawnArea> areaList = repository.findByAreatagContainingIgnoreCase(areatag);
         List<String> result = new ArrayList<>();
@@ -45,7 +49,7 @@ public class SpawnAreaService {
         return a.orElse(null);
     }
 
-    public List<String> findByQuery(SpawnAreaRequest request) {
+    public List<SpawnArea> findByQuery(SpawnAreaRequest request) {
         List<SpawnArea> areaList;
         if(request.getAreatag().equals("")){
             areaList = repository.findAll();
@@ -62,7 +66,7 @@ public class SpawnAreaService {
                 .collect(Collectors.toList());
         List<String> result = new ArrayList<>();
         areaList.forEach(a -> result.add(a.getAreatag()));
-        return result;
+        return areaList;
     }
 
     @Transactional

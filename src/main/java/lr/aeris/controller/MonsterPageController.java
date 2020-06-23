@@ -3,7 +3,9 @@ package lr.aeris.controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import lr.aeris.model.SpawnMonster;
 import lr.aeris.model.SpawnType;
 import lr.aeris.service.SpawnMonsterService;
 import lr.aeris.service.SpawnPairService;
@@ -25,7 +27,7 @@ public class MonsterPageController {
     @FXML
     private TextField queryMonsterCr;
     @FXML
-    private ChoiceBox<String> queryMonsterType;
+    private ListView<SpawnType> queryMonsterType;
 
     public MonsterPageController(SpawnMonsterService monsterService, SpawnTypeService typeService, SpawnPairService pairService) {
         this.monsterService = monsterService;
@@ -35,7 +37,7 @@ public class MonsterPageController {
 
     @FXML
     public void initialize(){
-        queryMonsterType.setItems(FXCollections.observableArrayList(typeService.findAllTypes()));
+        queryMonsterType.setItems(FXCollections.observableList(typeService.findAllTypes()));
     }
 
 }

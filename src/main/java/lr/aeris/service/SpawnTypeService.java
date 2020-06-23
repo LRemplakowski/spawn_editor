@@ -18,7 +18,7 @@ public class SpawnTypeService {
         this.repository = repository;
     }
 
-    public List<String> findTypesOtherThan(List<String> types){
+    public List<String> findTypeNamesOtherThan(List<String> types){
         List<String> result = new ArrayList<>();
         if(!types.isEmpty()){
             repository.findByTypeNotIn(types).forEach(t -> result.add(t.getType()));
@@ -28,9 +28,7 @@ public class SpawnTypeService {
         return result;
     }
 
-    public List<String> findAllTypes(){
-        List<String> result = new ArrayList<>();
-        repository.findAll().forEach(t -> result.add(t.getType()));
-        return result;
+    public List<SpawnType> findAllTypes(){
+        return repository.findAll();
     }
 }

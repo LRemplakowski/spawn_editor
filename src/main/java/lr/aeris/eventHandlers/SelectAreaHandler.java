@@ -26,17 +26,15 @@ public class SelectAreaHandler implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
-        String areatag;
-        try {
-            areatag = areaPageController.getAreaList().getSelectionModel().getSelectedItem();
-        } catch (Exception e) {
-            areatag = "";
-        }
-        areaPageController.getSelectedAreatag().setText(areatag);
         SpawnArea area;
-        if(!areatag.equals("")){
-            area = areaService.findByAreatag(areatag);
-        } else {
+        System.out.println("Before try in SelectedAreaHandler");
+        try {
+            area = areaPageController.getAreaList().getSelectionModel().getSelectedItem();
+        } catch (Exception e) {
+            area = new SpawnArea();
+        }
+        areaPageController.getSelectedAreatag().setText(area.toString());
+        if(area.toString().equals("")){
             return;
         }
         areaPageController.getSelectedCrMin().setText(area.getCrmin().toString());
@@ -45,9 +43,9 @@ public class SelectAreaHandler implements EventHandler<MouseEvent> {
         areaPageController.getSelectedMaxMobs().setText(area.getMaxmobs().toString());
         areaPageController.getSelectedHasSpawn().setSelected(area.getHasspawn()==1);
         areaPageController.getSelectedCooldown().setText(area.getCooldown().toString());
-        List<String> areaRules = ruleService.findRulesByAreatag(areatag);
+        List<String> areaRules = ruleService.findRulesByAreatag(area.toString());
         areaPageController.getSelectedAreaRuleList().setItems(FXCollections.observableList(areaRules));
-        List<String> otherRules = typeService.findTypesOtherThan(areaRules);
+        List<String> otherRules = typeService.findTypeNamesOtherThan(areaRules);
         areaPageController.getSelectedRuleList().setItems(FXCollections.observableList(otherRules));
         areaPageController.setSelectedAreaFieldsDisabled(false);
         areaPageController.getAreaList().setDisable(true);
