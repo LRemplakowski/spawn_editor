@@ -12,14 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lr.aeris.controller.AreaPageController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
             <Pane layoutX="14.0" layoutY="14.0">
                <children>
-                  <TitledPane animated="false" collapsible="false" layoutY="294.0" prefHeight="250.0" prefWidth="270.0" text="Lista lokacji:">
+                  <TitledPane animated="false" collapsible="false" layoutY="294.0" prefHeight="250.0" prefWidth="269.0" text="Lista lokacji:">
                      <content>
                         <ListView fx:id="areaList" minHeight="0.0" onMouseClicked="#onSelectArea" prefHeight="0.0" />
                      </content>
@@ -83,7 +82,7 @@
                               <Pane layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="193.0">
                                  <children>
                                     <Label layoutX="1.0" prefHeight="17.0" prefWidth="82.0" text="Tag lokacji:" textAlignment="CENTER" />
-                                    <TextField fx:id="selectedAreatag" disable="true" editable="false" layoutY="19.0" prefHeight="25.0" prefWidth="167.0" promptText="areatag" />
+                                    <TextField fx:id="selectedAreatag" editable="false" layoutY="19.0" prefHeight="25.0" prefWidth="167.0" promptText="areatag" />
                                  </children>
                               </Pane>
                               <Pane layoutX="14.0" layoutY="83.0" prefHeight="357.0" prefWidth="440.0">
@@ -112,7 +111,7 @@
                                                 <TextField fx:id="selectedMinMobs" disable="true" layoutY="19.0" prefHeight="25.0" prefWidth="167.0" promptText="minmobs" />
                                              </children>
                                           </Pane>
-                                          <Pane layoutX="271.0" prefHeight="45.0" prefWidth="170.0">
+                                          <Pane layoutX="270.0" prefHeight="45.0" prefWidth="170.0">
                                              <children>
                                                 <Label layoutX="1.0" prefHeight="17.0" prefWidth="148.0" text="Maksymalna ilość mobów:" textAlignment="CENTER" />
                                                 <TextField fx:id="selectedMaxMobs" disable="true" layoutY="19.0" prefHeight="25.0" prefWidth="167.0" promptText="maxmobs" />
@@ -123,7 +122,7 @@
                                     <Pane layoutY="140.0" prefHeight="45.0" prefWidth="440.0">
                                        <children>
                                           <CheckBox fx:id="selectedHasSpawn" disable="true" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="110.0" text="Posiada spawn" />
-                                          <Pane layoutX="272.0" prefHeight="45.0" prefWidth="170.0">
+                                          <Pane layoutX="270.0" prefHeight="45.0" prefWidth="170.0">
                                              <children>
                                                 <Label layoutX="1.0" prefHeight="17.0" prefWidth="121.0" text="Minimalny cooldown:" textAlignment="CENTER" />
                                                 <TextField fx:id="selectedCooldown" disable="true" layoutY="19.0" prefHeight="25.0" prefWidth="167.0" promptText="cooldown" />
@@ -133,7 +132,7 @@
                                     </Pane>
                                     <Pane layoutY="208.0" prefHeight="146.0" prefWidth="440.0">
                                        <children>
-                                          <TitledPane collapsible="false" prefWidth="170.0" text="Reguły stworzeń:">
+                                          <TitledPane collapsible="false" prefWidth="170.0" text="Lista reguł:">
                                              <content>
                                                 <ListView fx:id="selectedRuleList" disable="true" prefHeight="120.0" prefWidth="166.0" />
                                              </content>
@@ -161,7 +160,7 @@
                   </TitledPane>
                   <ButtonBar layoutX="104.0" layoutY="503.0" prefHeight="40.0" prefWidth="264.0">
                      <buttons>
-                        <Button fx:id="buttonReject" mnemonicParsing="false" onAction="#onButtonReset" prefHeight="25.0" prefWidth="104.0" text="Odrzuć zmiany" translateX="-48.0" />
+                        <Button fx:id="buttonDiscardChanges" mnemonicParsing="false" onAction="#onButtonReset" prefHeight="25.0" prefWidth="104.0" text="Odrzuć zmiany" translateX="-48.0" />
                         <Button fx:id="buttonSave" layoutX="140.0" layoutY="18.0" mnemonicParsing="false" onAction="#onButtonSave" text="Zapisz" />
                      </buttons>
                   </ButtonBar>

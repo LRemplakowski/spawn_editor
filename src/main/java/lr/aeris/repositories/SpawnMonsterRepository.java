@@ -12,4 +12,6 @@ public interface SpawnMonsterRepository extends JpaRepository<SpawnMonster, Stri
 
     @Query(value = "SELECT m FROM SpawnMonster m WHERE m.resref=:resref")
     List<SpawnMonster> findByResref(String resref);
+
+    List<SpawnMonster> findByResrefContainingIgnoreCase(String resref);
 }

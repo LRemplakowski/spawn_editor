@@ -24,12 +24,12 @@ public class SpawnAreaRequest {
 
     public SpawnAreaRequest(String areatag, String crMin, String crMax, String minMobs, String maxMobs, Boolean hasSpawn, String cooldown) {
         this.areatag = areatag;
-        this.crMin = !crMin.equals("") ? Integer.valueOf(crMin) : Integer.MIN_VALUE;
-        this.crMax = !crMax.equals("") ? Integer.valueOf(crMax) : Integer.MAX_VALUE;
-        this.minMobs = !minMobs.equals("") ? Integer.valueOf(crMin) : Integer.MIN_VALUE;
-        this.maxMobs = !maxMobs.equals("") ? Integer.valueOf(crMax) : Integer.MAX_VALUE;
+        this.crMin = !crMin.equals("") ? Integer.parseInt(crMin) : Integer.MIN_VALUE;
+        this.crMax = !crMax.equals("") ? Integer.parseInt(crMax) : Integer.MAX_VALUE;
+        this.minMobs = !minMobs.equals("") ? Integer.parseInt(crMin) : Integer.MIN_VALUE;
+        this.maxMobs = !maxMobs.equals("") ? Integer.parseInt(crMax) : Integer.MAX_VALUE;
         this.hasSpawn = hasSpawn ? 1 : 0;
-        this.cooldown = !cooldown.equals("") ? Integer.valueOf(cooldown) : Integer.MIN_VALUE;
+        this.cooldown = !cooldown.equals("") ? Integer.parseInt(cooldown) : Integer.MIN_VALUE;
     }
 
     public String getAreatag() {

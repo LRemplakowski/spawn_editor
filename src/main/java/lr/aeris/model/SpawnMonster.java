@@ -46,4 +46,17 @@ public class SpawnMonster {
     public String getSpecialLoot() {
         return specialLoot;
     }
+
+    public void setCr(Integer cr) {
+        this.cr = cr;
+    }
+
+    public void setBaseType(String baseType) {
+        this.baseType = baseType;
+    }
+
+    @Override
+    public String toString() {
+        return name+" - "+resref;
+    }
 }

@@ -81,7 +81,7 @@ public class AreaPageController {
     @FXML
     private Button buttonRemoveRuleAll;
     @FXML
-    private Button buttonReject;
+    private Button buttonDiscardChanges;
     @FXML
     private Button buttonSave;
 
@@ -185,7 +185,7 @@ public class AreaPageController {
             }
         });
 
-        areaList.setOnMouseClicked(new SelectAreaHandler(this, areaService, ruleService, typeService));
+        areaList.setOnMouseClicked(new SelectAreaHandler(this, ruleService, typeService));
     }
 
     @FXML
@@ -193,7 +193,6 @@ public class AreaPageController {
         ObservableList<SpawnArea> observableList = FXCollections.observableList(areaService.getAllAreas());
         areaList.setItems(observableList);
         clearAreaSelection();
-        areaList.setDisable(false);
     }
 
     @FXML
@@ -211,7 +210,6 @@ public class AreaPageController {
         ObservableList<SpawnArea> observableList = FXCollections.observableList(areaService.findByQuery(request));
         areaList.setItems(observableList);
         clearAreaSelection();
-        areaList.setDisable(false);
     }
 
     @FXML
@@ -290,12 +288,12 @@ public class AreaPageController {
                 .build();
         areaService.saveEditedArea(request);
         ruleService.saveEditedSpawnRules(request);
+        clearAreaSelection();
     }
 
     @FXML
     public void onButtonReset(){
         clearAreaSelection();
-        areaList.setDisable(false);
     }
 
     public ListView<SpawnArea> getAreaList() {
@@ -365,5 +363,6 @@ public class AreaPageController {
         setSelectedAreaFieldsDisabled(true);
         clearSelectedAreaFields();
         areaList.getSelectionModel().clearSelection();
+        areaList.setDisable(false);
     }
 }

@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @IdClass(SpawnRule.class)
-public class SpawnRule implements Serializable, Comparable<String> {
+public class SpawnRule implements Serializable, Comparable<SpawnRule> {
     @Id
     private String rule;
     @Id
@@ -40,12 +40,12 @@ public class SpawnRule implements Serializable, Comparable<String> {
     }
 
     @Override
-    public int compareTo(String anotherString) {
+    public int compareTo(SpawnRule other) {
         int len1 = rule.length();
-        int len2 = anotherString.length();
+        int len2 = other.rule.length();
         int lim = Math.min(len1, len2);
         char v1[] = rule.toCharArray();
-        char v2[] = anotherString.toCharArray();
+        char v2[] = other.rule.toCharArray();
 
         int k = 0;
         while (k < lim) {

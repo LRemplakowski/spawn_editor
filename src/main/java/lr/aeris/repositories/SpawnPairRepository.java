@@ -12,4 +12,6 @@ public interface SpawnPairRepository extends JpaRepository<SpawnPair, String> {
 
     @Query(value = "SELECT p FROM SpawnPair p WHERE p.resref=:resref")
     List<SpawnPair> findByResref(String resref);
+
+    List<SpawnPair> findByResrefNotIn(List<String> list);
 }

@@ -72,9 +72,7 @@ public class SpawnAreaService {
     @Transactional
     public void saveEditedArea(ChangeAreaRequest request){
         Optional<SpawnArea> found = repository.findById(request.getAreatag());
-        System.out.println("Looking for area");
         if(found.isPresent()){
-            System.out.println("Area found, saving");
             SpawnArea area = found.get();
             area.setCrmin(request.getCrMin() != null ? request.getCrMin() : area.getCrmin());
             area.setCrmax(request.getCrMax() != null ? request.getCrMax() : area.getCrmax());
