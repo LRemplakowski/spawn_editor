@@ -17,7 +17,6 @@ public class SpawnMonster {
     @Id
     private String resref;
     private Integer cr;
-    private Integer special;
     @Column(name = "base_type")
     private String baseType;
     @Column(name = "special_loot")
@@ -33,10 +32,6 @@ public class SpawnMonster {
 
     public Integer getCr() {
         return cr;
-    }
-
-    public Integer getSpecial() {
-        return special;
     }
 
     public String getBaseType() {

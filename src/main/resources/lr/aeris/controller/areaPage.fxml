@@ -18,37 +18,37 @@
          <children>
             <Pane layoutX="14.0" layoutY="14.0">
                <children>
-                  <TitledPane animated="false" collapsible="false" layoutY="294.0" prefHeight="250.0" prefWidth="269.0" text="Lista lokacji:">
+                  <TitledPane animated="false" collapsible="false" layoutY="321.0" prefHeight="223.0" prefWidth="269.0" text="Lista lokacji:">
                      <content>
                         <ListView fx:id="areaList" minHeight="0.0" onMouseClicked="#onSelectArea" prefHeight="0.0" />
                      </content>
                   </TitledPane>
-                  <TitledPane animated="false" collapsible="false" prefHeight="275.0" prefWidth="269.0" text="Wyszukiwanie">
+                  <TitledPane animated="false" collapsible="false" prefHeight="308.0" prefWidth="269.0" text="Wyszukiwanie">
                      <content>
-                        <AnchorPane prefHeight="267.0" prefWidth="267.0">
+                        <AnchorPane prefHeight="277.0" prefWidth="267.0">
                            <children>
-                              <Pane layoutX="14.0" layoutY="98.0">
+                              <Pane layoutX="14.0" layoutY="134.0">
                                  <children>
                                     <Label alignment="CENTER" layoutX="1.0" prefHeight="24.0" prefWidth="231.0" text="Przedział ilości mobów na lokacji" textAlignment="CENTER" />
                                     <TextField fx:id="queryMinMobs" layoutY="23.0" prefHeight="25.0" prefWidth="110.0" promptText="Min. ilość mobów" />
                                     <TextField fx:id="queryMaxMobs" layoutX="117.0" layoutY="23.0" prefHeight="25.0" prefWidth="116.0" promptText="Max. ilość mobów" />
                                  </children>
                               </Pane>
-                              <Pane layoutX="14.0" layoutY="46.0">
+                              <Pane layoutX="14.0" layoutY="82.0">
                                  <children>
                                     <Label alignment="CENTER" layoutX="1.0" prefHeight="21.0" prefWidth="232.0" text="Przedział CR na lokacji" textAlignment="CENTER" />
                                     <TextField fx:id="queryMinCr" layoutY="21.0" prefHeight="25.0" prefWidth="109.0" promptText="Minimalne CR" />
                                     <TextField fx:id="queryMaxCr" layoutX="117.0" layoutY="21.0" prefHeight="25.0" prefWidth="116.0" promptText="Maksymalne CR" />
                                  </children>
                               </Pane>
-                              <Pane layoutX="14.0" layoutY="154.0">
+                              <Pane layoutX="14.0" layoutY="182.0">
                                  <children>
                                     <TextField fx:id="queryCooldown" layoutX="117.0" layoutY="24.0" prefHeight="25.0" prefWidth="116.0" promptText="Cooldown" />
                                     <CheckBox fx:id="queryHasspawn" layoutY="16.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="110.0" text="Posiada spawn" />
                                     <Label alignment="CENTER" layoutX="116.0" prefHeight="24.0" prefWidth="116.0" text="Minimalny cooldown" textAlignment="CENTER" />
                                  </children>
                               </Pane>
-                              <Pane layoutX="14.0" layoutY="215.0">
+                              <Pane layoutX="14.0" layoutY="243.0">
                                  <children>
                                     <Button fx:id="findQuery" layoutX="129.0" mnemonicParsing="false" onAction="#findQueryButton" prefHeight="25.0" prefWidth="104.0" text="Wyszukaj">
                                        <font>
@@ -67,6 +67,7 @@
                                     <TextField fx:id="queryTag" prefHeight="25.0" prefWidth="233.0" promptText="Tag lokacji" />
                                  </children>
                               </Pane>
+                              <TextField fx:id="queryName" layoutX="14.0" layoutY="51.0" prefHeight="25.0" prefWidth="233.0" promptText="Nazwa lokacji" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -79,10 +80,20 @@
                      <content>
                         <AnchorPane prefHeight="467.0" prefWidth="474.0">
                            <children>
-                              <Pane layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="193.0">
+                              <Pane layoutX="14.0" layoutY="14.0">
                                  <children>
-                                    <Label layoutX="1.0" prefHeight="17.0" prefWidth="82.0" text="Tag lokacji:" textAlignment="CENTER" />
-                                    <TextField fx:id="selectedTag" editable="false" layoutY="19.0" prefHeight="25.0" prefWidth="167.0" promptText="areatag" />
+                                    <Pane prefHeight="45.0" prefWidth="193.0">
+                                       <children>
+                                          <Label layoutX="1.0" prefHeight="17.0" prefWidth="82.0" text="Tag lokacji:" textAlignment="CENTER" />
+                                          <TextField fx:id="selectedTag" editable="false" layoutY="19.0" prefHeight="25.0" prefWidth="167.0" promptText="areatag" />
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="270.0" prefHeight="45.0" prefWidth="170.0">
+                                       <children>
+                                          <Label layoutX="1.0" prefHeight="17.0" prefWidth="82.0" text="Nazwa lokacji:" textAlignment="CENTER" />
+                                          <TextField fx:id="selectedName" editable="false" layoutY="19.0" prefHeight="25.0" prefWidth="167.0" promptText="name" />
+                                       </children>
+                                    </Pane>
                                  </children>
                               </Pane>
                               <Pane layoutX="14.0" layoutY="83.0" prefHeight="357.0" prefWidth="440.0">

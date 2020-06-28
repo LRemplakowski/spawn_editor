@@ -1,5 +1,6 @@
 package lr.aeris.service;
 
+import lr.aeris.model.Area;
 import lr.aeris.model.SpawnArea;
 import lr.aeris.repositories.SpawnAreaRepository;
 import lr.aeris.requests.ChangeAreaRequest;
@@ -16,19 +17,35 @@ import java.util.stream.Collectors;
 @Service
 public class SpawnAreaService {
     private final SpawnAreaRepository repository;
+    private final AreaService areaService;
 
     @Autowired
-    public SpawnAreaService(SpawnAreaRepository repository){
+    public SpawnAreaService(SpawnAreaRepository repository, AreaService areaService) {
         this.repository = repository;
+        this.areaService = areaService;
     }
 
     public List<SpawnArea> getAllAreas(){
         return repository.findAll();
     }
 
+    private List<SpawnArea> getSpawnAreasByName(String name) {
+        List<Area> areas = areaService.findByPartialName(name);
+        List<String> tags = new ArrayList<>();
+        areas.forEach(a -> tags.add(a.getTag()));
+        return repository.findAllById(tags);
+    }
+
     public List<SpawnArea> findByQuery(SpawnAreaRequest request) {
         List<SpawnArea> areaList;
-        if(request.getTag().equals("")){
+        if(!request.getName().equals("")) {
+            areaList = getSpawnAreasByName(request.getName());
+            if(!request.getTag().equals("")) {
+                areaList = areaList.stream()
+                        .filter(a -> a.getTag().contains(request.getTag()))
+                        .collect(Collectors.toList());
+            }
+        } else if(request.getTag().equals("")) {
             areaList = repository.findAll();
         } else {
             areaList = repository.findByTagContainingIgnoreCase(request.getTag());
