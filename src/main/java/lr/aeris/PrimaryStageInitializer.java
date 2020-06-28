@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import lr.aeris.controller.MainController;
+import lr.aeris.events.StageReadyEvent;
 import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -24,7 +25,7 @@ public class PrimaryStageInitializer implements ApplicationListener<StageReadyEv
         Stage stage = event.stage;
         Scene scene = new Scene(fxWeaver.loadView(MainController.class));
         stage.setScene(scene);
-        stage.setTitle("Spawn Editor v0.1");
+        stage.setTitle("Spawn Editor v0.2");
         stage.getIcons().add(new Image(PrimaryStageInitializer.class.getResourceAsStream("/icon.png")));
         stage.show();
     }

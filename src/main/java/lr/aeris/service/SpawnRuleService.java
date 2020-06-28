@@ -27,7 +27,7 @@ public class SpawnRuleService {
 
     @Transactional
     public void saveEditedSpawnRules(ChangeAreaRequest request){
-        String areatag = request.getAreatag();
+        String areatag = request.getTag();
         List<SpawnRule> originalRules = repository.findByAreatag(areatag);
         repository.deleteAll(originalRules);
         List<SpawnRule> newRules = new ArrayList<>();

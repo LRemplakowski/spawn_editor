@@ -11,8 +11,8 @@ import lr.aeris.eventHandlers.SelectAreaHandler;
 import lr.aeris.model.SpawnArea;
 import lr.aeris.requests.ChangeAreaRequest;
 import lr.aeris.requests.SpawnAreaRequest;
+import lr.aeris.service.AreaService;
 import lr.aeris.service.SpawnAreaService;
-import lr.aeris.service.SpawnMonsterService;
 import lr.aeris.service.SpawnRuleService;
 import lr.aeris.service.SpawnTypeService;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -25,17 +25,17 @@ import java.util.List;
 @FxmlView("areaPage.fxml")
 public class AreaPageController {
 
-    private final SpawnAreaService areaService;
+    private final SpawnAreaService spawnAreaService;
     private final SpawnRuleService ruleService;
     private final SpawnTypeService typeService;
+    private final AreaService areaService;
 
     @FXML
     private ListView<SpawnArea> areaList;
-
     @FXML
-    private TextField queryAreatag;
-    //@FXML
-    //private TextField queryAreaname;
+    private TextField queryTag;
+    @FXML
+    private TextField queryName;
     @FXML
     private TextField queryMinCr;
     @FXML
@@ -48,14 +48,14 @@ public class AreaPageController {
     private CheckBox queryHasspawn;
     @FXML
     private TextField queryCooldown;
-
     @FXML
     private Button findAll;
     @FXML
     private Button findQuery;
-
     @FXML
-    private TextField selectedAreatag;
+    private TextField selectedTag;
+    @FXML
+    private TextField selectedName;
     @FXML
     private TextField selectedCrMin;
     @FXML
@@ -85,10 +85,11 @@ public class AreaPageController {
     @FXML
     private Button buttonSave;
 
-    public AreaPageController(SpawnAreaService areaService, SpawnRuleService ruleService, SpawnTypeService typeService) {
-        this.areaService = areaService;
+    public AreaPageController(SpawnAreaService spawnAreaService, SpawnRuleService ruleService, SpawnTypeService typeService, AreaService areaService) {
+        this.spawnAreaService = spawnAreaService;
         this.ruleService = ruleService;
         this.typeService = typeService;
+        this.areaService = areaService;
     }
 
     @FXML
@@ -185,12 +186,12 @@ public class AreaPageController {
             }
         });
 
-        areaList.setOnMouseClicked(new SelectAreaHandler(this, ruleService, typeService));
+        areaList.setOnMouseClicked(new SelectAreaHandler(this, ruleService, typeService, areaService));
     }
 
     @FXML
     public void findAllButton(){
-        ObservableList<SpawnArea> observableList = FXCollections.observableList(areaService.getAllAreas());
+        ObservableList<SpawnArea> observableList = FXCollections.observableList(spawnAreaService.getAllAreas());
         areaList.setItems(observableList);
         clearAreaSelection();
     }
@@ -199,7 +200,8 @@ public class AreaPageController {
     public void findQueryButton(){
         //System.out.println("MinCr passed into constructor: "+queryMinCr.getText());
         SpawnAreaRequest request = new SpawnAreaRequest(
-                queryAreatag.getText(),
+                queryTag.getText(),
+                queryName.getText(),
                 queryMinCr.getText(),
                 queryMaxCr.getText(),
                 queryMinMobs.getText(),
@@ -207,7 +209,7 @@ public class AreaPageController {
                 queryHasspawn.isSelected(),
                 queryCooldown.getText());
         System.out.println(request.toString());
-        ObservableList<SpawnArea> observableList = FXCollections.observableList(areaService.findByQuery(request));
+        ObservableList<SpawnArea> observableList = FXCollections.observableList(spawnAreaService.findByQuery(request));
         areaList.setItems(observableList);
         clearAreaSelection();
     }
@@ -277,7 +279,7 @@ public class AreaPageController {
 
     @FXML
     public void onButtonSave(){
-        ChangeAreaRequest request = new ChangeAreaRequest.ChangeAreaRequestBuilder(selectedAreatag.getText())
+        ChangeAreaRequest request = new ChangeAreaRequest.ChangeAreaRequestBuilder(selectedTag.getText())
                 .setCrMin(Integer.valueOf(getSelectedCrMin().getText()))
                 .setCrMax(Integer.valueOf(getSelectedCrMax().getText()))
                 .setMinMobs(Integer.valueOf(getSelectedMinMobs().getText()))
@@ -286,7 +288,7 @@ public class AreaPageController {
                 .setCooldown(Integer.valueOf(getSelectedCooldown().getText()))
                 .setSpawnRules(selectedAreaRuleList.getItems())
                 .build();
-        areaService.saveEditedArea(request);
+        spawnAreaService.saveEditedArea(request);
         ruleService.saveEditedSpawnRules(request);
         clearAreaSelection();
     }
@@ -300,8 +302,12 @@ public class AreaPageController {
         return areaList;
     }
 
-    public TextField getSelectedAreatag() {
-        return selectedAreatag;
+    public TextField getSelectedTag() {
+        return selectedTag;
+    }
+
+    public TextField getSelectedName() {
+        return selectedName;
     }
 
     public TextField getSelectedCrMin() {
@@ -348,7 +354,7 @@ public class AreaPageController {
     }
 
     public void clearSelectedAreaFields(){
-        selectedAreatag.setText("");
+        selectedTag.setText("");
         selectedCrMin.setText("");
         selectedCrMax.setText("");
         selectedMinMobs.setText("");

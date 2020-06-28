@@ -4,8 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import lr.aeris.controller.AreaPageController;
+import lr.aeris.model.Area;
 import lr.aeris.model.SpawnArea;
-import lr.aeris.service.SpawnAreaService;
+import lr.aeris.service.AreaService;
 import lr.aeris.service.SpawnRuleService;
 import lr.aeris.service.SpawnTypeService;
 
@@ -15,11 +16,13 @@ public class SelectAreaHandler implements EventHandler<MouseEvent> {
     private final AreaPageController areaPageController;
     private final SpawnRuleService ruleService;
     private final SpawnTypeService typeService;
+    private final AreaService areaService;
 
-    public SelectAreaHandler(AreaPageController areaPageController, SpawnRuleService ruleService, SpawnTypeService typeService) {
+    public SelectAreaHandler(AreaPageController areaPageController, SpawnRuleService ruleService, SpawnTypeService typeService, AreaService areaService) {
         this.areaPageController = areaPageController;
         this.ruleService = ruleService;
         this.typeService = typeService;
+        this.areaService = areaService;
     }
 
     @Override
@@ -30,10 +33,12 @@ public class SelectAreaHandler implements EventHandler<MouseEvent> {
         } catch (Exception e) {
             area = new SpawnArea();
         }
-        areaPageController.getSelectedAreatag().setText(area.getAreatag());
-        if(area.getAreatag().equals("")){
+        areaPageController.getSelectedTag().setText(area.getTag());
+        if(area.getTag().equals("")){
             return;
         }
+        Area namedArea = areaService.findByTag(area.getTag());
+        areaPageController.getSelectedName().setText(namedArea.getFullName());
         areaPageController.getSelectedCrMin().setText(area.getCrmin().toString());
         areaPageController.getSelectedCrMax().setText(area.getCrmax().toString());
         areaPageController.getSelectedMinMobs().setText(area.getMinmobs().toString());
