@@ -12,7 +12,6 @@ import lr.aeris.model.SpawnArea;
 import lr.aeris.requests.ChangeAreaRequest;
 import lr.aeris.requests.SpawnAreaRequest;
 import lr.aeris.service.SpawnAreaService;
-import lr.aeris.service.SpawnMonsterService;
 import lr.aeris.service.SpawnRuleService;
 import lr.aeris.service.SpawnTypeService;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -33,7 +32,7 @@ public class AreaPageController {
     private ListView<SpawnArea> areaList;
 
     @FXML
-    private TextField queryAreatag;
+    private TextField queryTag;
     //@FXML
     //private TextField queryAreaname;
     @FXML
@@ -55,7 +54,7 @@ public class AreaPageController {
     private Button findQuery;
 
     @FXML
-    private TextField selectedAreatag;
+    private TextField selectedTag;
     @FXML
     private TextField selectedCrMin;
     @FXML
@@ -199,7 +198,7 @@ public class AreaPageController {
     public void findQueryButton(){
         //System.out.println("MinCr passed into constructor: "+queryMinCr.getText());
         SpawnAreaRequest request = new SpawnAreaRequest(
-                queryAreatag.getText(),
+                queryTag.getText(),
                 queryMinCr.getText(),
                 queryMaxCr.getText(),
                 queryMinMobs.getText(),
@@ -277,7 +276,7 @@ public class AreaPageController {
 
     @FXML
     public void onButtonSave(){
-        ChangeAreaRequest request = new ChangeAreaRequest.ChangeAreaRequestBuilder(selectedAreatag.getText())
+        ChangeAreaRequest request = new ChangeAreaRequest.ChangeAreaRequestBuilder(selectedTag.getText())
                 .setCrMin(Integer.valueOf(getSelectedCrMin().getText()))
                 .setCrMax(Integer.valueOf(getSelectedCrMax().getText()))
                 .setMinMobs(Integer.valueOf(getSelectedMinMobs().getText()))
@@ -300,8 +299,8 @@ public class AreaPageController {
         return areaList;
     }
 
-    public TextField getSelectedAreatag() {
-        return selectedAreatag;
+    public TextField getSelectedTag() {
+        return selectedTag;
     }
 
     public TextField getSelectedCrMin() {
@@ -348,7 +347,7 @@ public class AreaPageController {
     }
 
     public void clearSelectedAreaFields(){
-        selectedAreatag.setText("");
+        selectedTag.setText("");
         selectedCrMin.setText("");
         selectedCrMax.setText("");
         selectedMinMobs.setText("");

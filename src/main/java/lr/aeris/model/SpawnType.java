@@ -15,6 +15,10 @@ public class SpawnType {
     @Id
     private String type;
 
+    public SpawnType(String type) {
+        this.type = type;
+    }
+
     public String getType() {
         return type;
     }

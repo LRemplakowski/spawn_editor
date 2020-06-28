@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import lr.aeris.controller.AreaPageController;
 import lr.aeris.model.SpawnArea;
-import lr.aeris.service.SpawnAreaService;
 import lr.aeris.service.SpawnRuleService;
 import lr.aeris.service.SpawnTypeService;
 
@@ -30,8 +29,8 @@ public class SelectAreaHandler implements EventHandler<MouseEvent> {
         } catch (Exception e) {
             area = new SpawnArea();
         }
-        areaPageController.getSelectedAreatag().setText(area.getAreatag());
-        if(area.getAreatag().equals("")){
+        areaPageController.getSelectedTag().setText(area.getTag());
+        if(area.getTag().equals("")){
             return;
         }
         areaPageController.getSelectedCrMin().setText(area.getCrmin().toString());

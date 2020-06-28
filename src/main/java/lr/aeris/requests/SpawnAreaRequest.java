@@ -1,7 +1,7 @@
 package lr.aeris.requests;
 
 public class SpawnAreaRequest {
-    private String areatag;
+    private String tag;
     private Integer crMin;
     private Integer crMax;
     private Integer minMobs;
@@ -12,7 +12,7 @@ public class SpawnAreaRequest {
     @Override
     public String toString() {
         return "SpawnAreaRequest{" +
-                "areatag='" + areatag + '\'' +
+                "areatag='" + tag + '\'' +
                 ", crMin=" + crMin +
                 ", crMax=" + crMax +
                 ", minMobs=" + minMobs +
@@ -22,8 +22,8 @@ public class SpawnAreaRequest {
                 '}';
     }
 
-    public SpawnAreaRequest(String areatag, String crMin, String crMax, String minMobs, String maxMobs, Boolean hasSpawn, String cooldown) {
-        this.areatag = areatag;
+    public SpawnAreaRequest(String tag, String crMin, String crMax, String minMobs, String maxMobs, Boolean hasSpawn, String cooldown) {
+        this.tag = tag;
         this.crMin = !crMin.equals("") ? Integer.parseInt(crMin) : Integer.MIN_VALUE;
         this.crMax = !crMax.equals("") ? Integer.parseInt(crMax) : Integer.MAX_VALUE;
         this.minMobs = !minMobs.equals("") ? Integer.parseInt(crMin) : Integer.MIN_VALUE;
@@ -32,12 +32,12 @@ public class SpawnAreaRequest {
         this.cooldown = !cooldown.equals("") ? Integer.parseInt(cooldown) : Integer.MIN_VALUE;
     }
 
-    public String getAreatag() {
-        return areatag;
+    public String getTag() {
+        return tag;
     }
 
-    public void setAreatag(String areatag) {
-        this.areatag = areatag;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public Integer getCrMin() {

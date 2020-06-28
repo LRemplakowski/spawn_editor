@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lr.aeris.controller.AreaPageController">
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0">
+      <Pane prefHeight="576.0" prefWidth="780.0">
          <children>
             <Pane layoutX="14.0" layoutY="14.0">
                <children>
@@ -64,7 +64,7 @@
                               </Pane>
                               <Pane layoutX="14.0" layoutY="14.0">
                                  <children>
-                                    <TextField fx:id="queryAreatag" prefHeight="25.0" prefWidth="233.0" promptText="Tag lokacji" />
+                                    <TextField fx:id="queryTag" prefHeight="25.0" prefWidth="233.0" promptText="Tag lokacji" />
                                  </children>
                               </Pane>
                            </children>
@@ -82,7 +82,7 @@
                               <Pane layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="193.0">
                                  <children>
                                     <Label layoutX="1.0" prefHeight="17.0" prefWidth="82.0" text="Tag lokacji:" textAlignment="CENTER" />
-                                    <TextField fx:id="selectedAreatag" editable="false" layoutY="19.0" prefHeight="25.0" prefWidth="167.0" promptText="areatag" />
+                                    <TextField fx:id="selectedTag" editable="false" layoutY="19.0" prefHeight="25.0" prefWidth="167.0" promptText="areatag" />
                                  </children>
                               </Pane>
                               <Pane layoutX="14.0" layoutY="83.0" prefHeight="357.0" prefWidth="440.0">

@@ -22,39 +22,16 @@ public class SpawnAreaService {
         this.repository = repository;
     }
 
-    public List<SpawnArea> findAllAreas(){
-        return repository.findAll();
-    }
-
-    public List<String> getAllAreatags(){
-        List<SpawnArea> areaList = findAllAreas();
-        List<String> result = new ArrayList<>();
-        areaList.forEach(a -> result.add(a.getAreatag()));
-        return result;
-    }
-
     public List<SpawnArea> getAllAreas(){
         return repository.findAll();
     }
 
-    public List<String> findByPartialAreatag(String areatag){
-        List<SpawnArea> areaList = repository.findByAreatagContainingIgnoreCase(areatag);
-        List<String> result = new ArrayList<>();
-        areaList.forEach(a -> result.add(a.getAreatag()));
-        return result;
-    }
-
-    public SpawnArea findByAreatag(String areatag){
-        Optional<SpawnArea> a = repository.findById(areatag);
-        return a.orElse(null);
-    }
-
     public List<SpawnArea> findByQuery(SpawnAreaRequest request) {
         List<SpawnArea> areaList;
-        if(request.getAreatag().equals("")){
+        if(request.getTag().equals("")){
             areaList = repository.findAll();
         } else {
-            areaList = repository.findByAreatagContainingIgnoreCase(request.getAreatag());
+            areaList = repository.findByTagContainingIgnoreCase(request.getTag());
         }
         areaList = areaList.stream()
                 .filter(a -> a.getCrmin() >= request.getCrMin())
@@ -65,13 +42,13 @@ public class SpawnAreaService {
                 .filter(a -> a.getCooldown() >= request.getCooldown())
                 .collect(Collectors.toList());
         List<String> result = new ArrayList<>();
-        areaList.forEach(a -> result.add(a.getAreatag()));
+        areaList.forEach(a -> result.add(a.getTag()));
         return areaList;
     }
 
     @Transactional
     public void saveEditedArea(ChangeAreaRequest request){
-        Optional<SpawnArea> found = repository.findById(request.getAreatag());
+        Optional<SpawnArea> found = repository.findById(request.getTag());
         if(found.isPresent()){
             SpawnArea area = found.get();
             area.setCrmin(request.getCrMin() != null ? request.getCrMin() : area.getCrmin());

@@ -1,4 +1,4 @@
-package lr.aeris;
+package lr.aeris.events;
 
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationEvent;

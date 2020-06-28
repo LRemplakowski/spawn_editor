@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "spawn_area_list")
 public class SpawnArea {
     @Id
-    private String areatag;
+    private String tag;
     @Column(name = "crmin")
     private Integer crmin;
     @Column(name = "crmax")
@@ -22,8 +22,8 @@ public class SpawnArea {
     private Integer hasspawn;
     private Integer cooldown;
 
-    public String getAreatag() {
-        return areatag;
+    public String getTag() {
+        return tag;
     }
 
     public Integer getCrmin() {
@@ -76,6 +76,6 @@ public class SpawnArea {
 
     @Override
     public String toString() {
-        return areatag;
+        return tag;
     }
 }

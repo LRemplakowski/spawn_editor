@@ -1,13 +1,10 @@
 package lr.aeris.requests;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeAreaRequest {
-    private String areatag;
+    private String tag;
     private Integer crMin;
     private Integer crMax;
     private Integer minMobs;
@@ -17,7 +14,7 @@ public class ChangeAreaRequest {
     private List<String> spawnRules;
 
     private ChangeAreaRequest(ChangeAreaRequestBuilder builder) {
-        this.areatag = builder.areatag;
+        this.tag = builder.tag;
         this.crMin = builder.crMin;
         this.crMax = builder.crMax;
         this.minMobs = builder.minMobs;
@@ -27,8 +24,8 @@ public class ChangeAreaRequest {
         this.spawnRules = builder.spawnRules;
     }
 
-    public String getAreatag() {
-        return areatag;
+    public String getTag() {
+        return tag;
     }
 
     public Integer getCrMin() {
@@ -62,7 +59,7 @@ public class ChangeAreaRequest {
     public static class ChangeAreaRequestBuilder {
 
         //required
-        private final String areatag;
+        private final String tag;
 
         //optional
         private Integer crMin;
@@ -73,8 +70,8 @@ public class ChangeAreaRequest {
         private Integer cooldown;
         private List<String> spawnRules;
 
-        public ChangeAreaRequestBuilder(String areatag){
-            this.areatag = areatag;
+        public ChangeAreaRequestBuilder(String tag){
+            this.tag = tag;
         }
 
         public ChangeAreaRequestBuilder setCrMin(Integer crMin){
