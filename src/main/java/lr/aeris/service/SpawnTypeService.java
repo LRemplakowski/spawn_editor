@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,10 +22,12 @@ public class SpawnTypeService {
         this.repository = repository;
     }
 
-    public List<String> findTypeNamesOtherThan(List<String> types){
+    public List<String> findTypeNamesOtherThan(List<String> types, String baseType){
         List<String> result = new ArrayList<>();
         if(!types.isEmpty()){
-            repository.findByTypeNotIn(types).forEach(t -> result.add(t.getType()));
+            repository.findByTypeIsNotAndTypeNotIn(baseType, types).forEach(t -> result.add(t.getType()));
+        } else if (baseType != null && !baseType.equals("")) {
+            repository.findByTypeIsNot(baseType).forEach(t -> result.add(t.getType()));
         } else {
             repository.findAll().forEach(t -> result.add(t.getType()));
         }

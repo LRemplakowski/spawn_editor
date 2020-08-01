@@ -47,7 +47,7 @@ public class SelectAreaHandler implements EventHandler<MouseEvent> {
         areaPageController.getSelectedCooldown().setText(area.getCooldown().toString());
         List<String> areaRules = ruleService.findRulesByAreatag(area.toString());
         areaPageController.getSelectedAreaRuleList().setItems(FXCollections.observableList(areaRules));
-        List<String> otherRules = typeService.findTypeNamesOtherThan(areaRules);
+        List<String> otherRules = typeService.findTypeNamesOtherThan(areaRules, null);
         areaPageController.getSelectedRuleList().setItems(FXCollections.observableList(otherRules));
         areaPageController.setSelectedAreaFieldsDisabled(false);
         //areaPageController.getAreaList().setDisable(true);
