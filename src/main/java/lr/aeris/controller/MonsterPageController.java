@@ -1,8 +1,11 @@
 package lr.aeris.controller;
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -19,8 +22,7 @@ import lr.aeris.service.SpawnTypeService;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Component
 @FxmlView("monsterPage.fxml")
@@ -135,7 +137,7 @@ public class MonsterPageController {
             } else {
                 selectedMonsterTypesList.setItems(selectedOtherTypesList.getItems());
             }
-            selectedOtherTypesList.setItems(null);
+            selectedOtherTypesList.getItems().clear();
             FXCollections.sort(selectedMonsterTypesList.getItems());
         }
     }
@@ -164,7 +166,7 @@ public class MonsterPageController {
             } else {
                 selectedOtherTypesList.setItems(selectedMonsterTypesList.getItems());
             }
-            selectedMonsterTypesList.setItems(null);
+            selectedMonsterTypesList.getItems().clear();
             FXCollections.sort(selectedOtherTypesList.getItems());
         }
     }
@@ -230,8 +232,8 @@ public class MonsterPageController {
         selectedName.setText("");
         selectedCr.setText("");
         selectedBaseType.getSelectionModel().clearSelection();
-        selectedOtherTypesList.setItems(null);
-        selectedMonsterTypesList.setItems(null);
+        selectedOtherTypesList.getItems().clear();
+        selectedMonsterTypesList.getItems().clear();
     }
 
     private void clearMonsterSelection() {
