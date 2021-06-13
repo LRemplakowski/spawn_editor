@@ -38,6 +38,10 @@ public class SelectAreaHandler implements EventHandler<MouseEvent> {
             return;
         }
         Area namedArea = areaService.findByTag(area.getTag());
+        if (namedArea == null)
+        {
+            namedArea = new Area();
+        }
         areaPageController.getSelectedName().setText(namedArea.getFullName());
         areaPageController.getSelectedCrMin().setText(area.getCrmin().toString());
         areaPageController.getSelectedCrMax().setText(area.getCrmax().toString());
@@ -47,7 +51,7 @@ public class SelectAreaHandler implements EventHandler<MouseEvent> {
         areaPageController.getSelectedCooldown().setText(area.getCooldown().toString());
         List<String> areaRules = ruleService.findRulesByAreatag(area.toString());
         areaPageController.getSelectedAreaRuleList().setItems(FXCollections.observableList(areaRules));
-        List<String> otherRules = typeService.findTypeNamesOtherThan(areaRules, null);
+        List<String> otherRules = typeService.findTypeNamesOtherThan(areaRules, "");
         areaPageController.getSelectedRuleList().setItems(FXCollections.observableList(otherRules));
         areaPageController.setSelectedAreaFieldsDisabled(false);
         //areaPageController.getAreaList().setDisable(true);

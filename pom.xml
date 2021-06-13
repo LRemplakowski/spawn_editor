@@ -10,11 +10,13 @@
 </parent>
   <groupId>lr.aeris</groupId>
   <artifactId>spawn_editor</artifactId>
-  <version>v0.2.1</version>
+  <version>v0.2.2</version>
 
   <name>spawn_editor</name>
   <!-- FIXME change it to the project's website -->
   <url>https://github.com/LRemplakowski/spawn_editor</url>
+
+  <packaging>jar</packaging>
 
 <properties>
   <java.version>1.8</java.version>

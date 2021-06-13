@@ -59,7 +59,7 @@ public class TypePageController {
             saveButton.setDisable(!isUnique);
             deleteButton.setDisable(isUnique);
         } else {
-            typeList.setItems(null);
+            typeList.getItems().clear();
             setIsTypeUniqueIcon(false);
             saveButton.setDisable(false);
             deleteButton.setDisable(false);

@@ -243,7 +243,7 @@ public class AreaPageController {
             } else {
                 selectedAreaRuleList.setItems(selectedRuleList.getItems());
             }
-            selectedRuleList.setItems(null);
+            selectedRuleList.getItems().clear();
             FXCollections.sort(selectedAreaRuleList.getItems());
         }
     }
@@ -272,7 +272,7 @@ public class AreaPageController {
             } else {
                 selectedRuleList.setItems(selectedAreaRuleList.getItems());
             }
-            selectedAreaRuleList.setItems(null);
+            selectedAreaRuleList.getItems().clear();
             FXCollections.sort(selectedRuleList.getItems());
         }
     }
@@ -355,14 +355,15 @@ public class AreaPageController {
 
     public void clearSelectedAreaFields(){
         selectedTag.setText("");
+        selectedName.setText("");
         selectedCrMin.setText("");
         selectedCrMax.setText("");
         selectedMinMobs.setText("");
         selectedMaxMobs.setText("");
         selectedHasSpawn.setSelected(false);
         selectedCooldown.setText("");
-        selectedRuleList.setItems(null);
-        selectedAreaRuleList.setItems(null);
+        selectedRuleList.getItems().clear();
+        selectedAreaRuleList.getItems().clear();
     }
 
     public void clearAreaSelection(){
