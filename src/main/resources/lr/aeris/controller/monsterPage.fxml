@@ -24,11 +24,16 @@
                               <TextField fx:id="queryMonsterName" layoutX="147.0" layoutY="52.0" prefHeight="25.0" prefWidth="100.0" promptText="Nazwa potwora" />
                               <TextField fx:id="queryMonsterResref" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="233.0" promptText="Resref potwora" />
                               <TextField fx:id="queryMonsterCr" layoutX="14.0" layoutY="52.0" prefHeight="25.0" prefWidth="100.0" promptText="CR potwora" />
-                              <TitledPane collapsible="false" layoutX="14.0" layoutY="88.0" prefHeight="145.0" prefWidth="233.0" text="Typ bazowy">
-                                 <content>
-                                    <ListView fx:id="queryMonsterType" prefHeight="104.0" prefWidth="220.0" />
-                                 </content>
-                              </TitledPane>
+                              <Pane layoutX="14.0" layoutY="88.0">
+                                 <children>
+                                    <TitledPane collapsible="false" prefHeight="145.0" prefWidth="233.0" text="Typ bazowy:">
+                                       <content>
+                                          <ListView fx:id="queryMonsterType" prefHeight="104.0" prefWidth="220.0" />
+                                       </content>
+                                    </TitledPane>
+                                    <Button fx:id="buttonClearSelection" layoutX="125.0" mnemonicParsing="false" onAction="#clearBaseTypeSelection" prefHeight="25.0" prefWidth="108.0" text="Wyczyść wybór" />
+                                 </children>
+                              </Pane>
                               <Button fx:id="buttonFindQuery" layoutX="167.0" layoutY="250.0" mnemonicParsing="false" onAction="#listMonstersMatchingQuery" prefHeight="25.0" prefWidth="80.0" text="Wyszukaj" />
                               <Button fx:id="buttonFindAll" layoutX="14.0" layoutY="250.0" mnemonicParsing="false" onAction="#listAllMonsters" prefHeight="25.0" prefWidth="110.0" text="Znajdź wszystkie" />
                            </children>
