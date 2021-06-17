@@ -43,7 +43,7 @@ public class SelectMonsterHandler implements EventHandler<MouseEvent> {
         pageController.getSelectedBaseType().getSelectionModel().select(selectedMonsterType);
         List<String> selectedSpawnTypeList = pairService.getPairTypesByResref(monster.getResref());
         pageController.getSelectedMonsterTypesList().setItems(FXCollections.observableList(selectedSpawnTypeList));
-        List<String> otherTypeList = typeService.findTypeNamesOtherThan(selectedSpawnTypeList, selectedMonsterType.getType());
+        List<String> otherTypeList = typeService.findTypeNamesOtherThan(selectedSpawnTypeList);
         pageController.getSelectedOtherTypesList().setItems(FXCollections.observableList(otherTypeList));
         pageController.setSelectedMonsterFieldsDisabled(false);
         //pageController.getSpawnMonsterList().setDisable(true);

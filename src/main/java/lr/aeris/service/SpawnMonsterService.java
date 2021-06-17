@@ -1,6 +1,9 @@
 package lr.aeris.service;
 
 import lr.aeris.model.SpawnMonster;
+import lr.aeris.model.SpawnPair;
+import lr.aeris.model.SpawnRule;
+import lr.aeris.model.SpawnType;
 import lr.aeris.repositories.SpawnMonsterRepository;
 import lr.aeris.requests.ChangeMonsterRequest;
 import lr.aeris.requests.SpawnMonsterRequest;
@@ -8,18 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class SpawnMonsterService {
 
     private final SpawnMonsterRepository repository;
+    private final SpawnPairService spawnPairService;
 
     @Autowired
-    public SpawnMonsterService(SpawnMonsterRepository repository){
+    public SpawnMonsterService(SpawnMonsterRepository repository, SpawnPairService spawnPairService){
         this.repository = repository;
+        this.spawnPairService = spawnPairService;
     }
 
     public List<SpawnMonster> findAllMonsters(){
@@ -33,11 +37,20 @@ public class SpawnMonsterService {
         } else {
             result = repository.findAll();
         }
+
+        List<String> resrefsPairedWithType = new ArrayList<>();
+        if(!request.getBaseType().getType().isEmpty())
+        {
+            resrefsPairedWithType = spawnPairService.getResrefsPairedWithType(request.getBaseType().getType());
+        }
+        List<String> finalResrefsPairedWithType = resrefsPairedWithType;
+
         result = result.stream()
                 .filter(r -> r.getName().toLowerCase().contains(request.getName().toLowerCase()))
                 .filter(r -> request.getCr() <= -1 || r.getCr().equals(request.getCr()))
-                .filter(r -> request.getBaseType().getType().equals("") || r.getBaseType().equals(request.getBaseType().getType()))
+                .filter(r -> request.getBaseType().getType().isEmpty() || finalResrefsPairedWithType.contains(r.getResref()))
                 .collect(Collectors.toList());
+
         return result;
     }
 
