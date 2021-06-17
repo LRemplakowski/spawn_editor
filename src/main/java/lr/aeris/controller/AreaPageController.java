@@ -291,6 +291,14 @@ public class AreaPageController {
                 .build();
         spawnAreaService.saveEditedArea(request);
         ruleService.saveEditedSpawnRules(request);
+        //Update selected area properties so it shows up properly upon re-selection
+        SpawnArea a = areaList.getSelectionModel().getSelectedItem();
+        a.setCrmin(Integer.valueOf(getSelectedCrMin().getText()));
+        a.setCrmax(Integer.valueOf(getSelectedCrMax().getText()));
+        a.setMinmobs(Integer.valueOf(getSelectedMinMobs().getText()));
+        a.setMaxmobs(Integer.valueOf(getSelectedMaxMobs().getText()));
+        a.setHasspawn(getSelectedHasSpawn().isSelected() ? 1 : 0);
+        a.setCooldown(Integer.valueOf(getSelectedCooldown().getText()));
         clearAreaSelection();
     }
 
