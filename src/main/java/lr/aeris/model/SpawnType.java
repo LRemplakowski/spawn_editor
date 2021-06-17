@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 public class SpawnType {
     @Id
-    private String type;
+    private String type = "";
 
     public SpawnType(String type) {
         this.type = type;
