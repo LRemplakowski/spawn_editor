@@ -8,11 +8,7 @@ import java.util.List;
 
 @Repository
 public interface SpawnTypeRepository extends JpaRepository<SpawnType, String> {
-
-    //@Query(value = "SELECT t FROM SpawnType t WHERE t.type NOT IN (:list)")
-    List<SpawnType> findByTypeIsNotAndTypeNotIn(String type, List<String> list);
-
-    List<SpawnType> findByTypeIsNot(String type);
+    List<SpawnType> findByTypeNotIn(List<String> list);
 
     List<SpawnType> findByTypeContainingIgnoreCase(String typeName);
 }

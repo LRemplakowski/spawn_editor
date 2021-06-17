@@ -19,10 +19,27 @@ public class SpawnPairService {
         this.repository = repository;
     }
 
-    public List<String> getPairTypesByResref(String resref){
+    public List<String> getPairTypesByResref(String resref) {
         List<String> result = new ArrayList<>();
         repository.findByResref(resref).forEach(p -> result.add(p.getType()));
         return result;
+    }
+
+    public List<SpawnPair> getPairsByResRef(String resref) {
+        return repository.findByResref(resref);
+    }
+
+    public List<SpawnPair> getPairsByType(String type)
+    {
+        return repository.findByType(type);
+    }
+
+    public List<String> getResrefsPairedWithType(String type)
+    {
+        List<SpawnPair> pairs = repository.findByType(type);
+        List<String> resrefs = new ArrayList<>();
+        pairs.forEach(p -> resrefs.add(p.getResref()));
+        return  resrefs;
     }
 
     @Transactional

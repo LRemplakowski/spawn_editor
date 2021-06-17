@@ -22,12 +22,10 @@ public class SpawnTypeService {
         this.repository = repository;
     }
 
-    public List<String> findTypeNamesOtherThan(List<String> types, String baseType){
+    public List<String> findTypeNamesOtherThan(List<String> types){
         List<String> result = new ArrayList<>();
         if(!types.isEmpty()){
-            repository.findByTypeIsNotAndTypeNotIn(baseType, types).forEach(t -> result.add(t.getType()));
-        } else if (baseType != null && !baseType.equals("")) {
-            repository.findByTypeIsNot(baseType).forEach(t -> result.add(t.getType()));
+            repository.findByTypeNotIn(types).forEach(t -> result.add(t.getType()));
         } else {
             repository.findAll().forEach(t -> result.add(t.getType()));
         }

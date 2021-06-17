@@ -14,4 +14,6 @@ public interface SpawnPairRepository extends JpaRepository<SpawnPair, String> {
     List<SpawnPair> findByResref(String resref);
 
     List<SpawnPair> findByResrefNotIn(List<String> list);
+
+    List<SpawnPair> findByType(String type);
 }
