@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 public class PrimaryStageInitializer implements ApplicationListener<StageReadyEvent> {
 
@@ -25,8 +27,8 @@ public class PrimaryStageInitializer implements ApplicationListener<StageReadyEv
         Stage stage = event.stage;
         Scene scene = new Scene(fxWeaver.loadView(MainController.class));
         stage.setScene(scene);
-        stage.setTitle("Spawn Editor v0.2.2");
-        stage.getIcons().add(new Image(PrimaryStageInitializer.class.getResourceAsStream("/icon.png")));
+        stage.setTitle("Spawn Editor v0.2.2.1");
+        stage.getIcons().add(new Image(Objects.requireNonNull(PrimaryStageInitializer.class.getResourceAsStream("/icon.png"))));
         stage.show();
     }
 }
