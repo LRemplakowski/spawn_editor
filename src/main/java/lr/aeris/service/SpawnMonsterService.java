@@ -36,7 +36,7 @@ public class SpawnMonsterService {
         result = result.stream()
                 .filter(r -> r.getName().contains(request.getName()))
                 .filter(r -> request.getCr() <= -1 || r.getCr().equals(request.getCr()))
-                .filter(r -> r.getBaseType().equals(request.getBaseType().getType()))
+                .filter(r -> request.getBaseType().getType().equals("") || r.getBaseType().equals(request.getBaseType().getType()))
                 .collect(Collectors.toList());
         return result;
     }

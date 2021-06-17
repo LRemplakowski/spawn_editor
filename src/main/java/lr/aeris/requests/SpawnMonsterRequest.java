@@ -12,7 +12,7 @@ public class SpawnMonsterRequest {
         this.resref = resref;
         this.name = name;
         this.cr = !cr.equals("") ? Integer.parseInt(cr) : -1;
-        this.baseType = baseType;
+        this.baseType = baseType != null ? baseType : new SpawnType();
     }
 
     public String getResref() {
