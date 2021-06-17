@@ -94,6 +94,7 @@ public class AreaPageController {
 
     @FXML
     public void initialize(){
+        queryHasspawn.setSelected(true);
         //Forces fields to take only proper input
         queryMinCr.textProperty().addListener(new ChangeListener<String>() {
             @Override
