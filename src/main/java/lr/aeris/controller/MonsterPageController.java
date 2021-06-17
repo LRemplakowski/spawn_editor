@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import lr.aeris.eventHandlers.SelectMonsterHandler;
 import lr.aeris.model.SpawnMonster;
 import lr.aeris.model.SpawnType;
@@ -69,6 +70,8 @@ public class MonsterPageController {
     private Button buttonDiscardChanges;
     @FXML
     private Button buttonSave;
+    @FXML
+    private Button buttonClearSelection;
 
     public MonsterPageController(SpawnMonsterService monsterService, SpawnTypeService typeService, SpawnPairService pairService) {
         this.monsterService = monsterService;
@@ -98,6 +101,12 @@ public class MonsterPageController {
         queryMonsterType.setItems(FXCollections.observableList(typeService.findAllTypes()));
         spawnMonsterList.setOnMouseClicked(new SelectMonsterHandler(this, monsterService, typeService, pairService));
         selectedBaseType.setItems(FXCollections.observableList(typeService.findAllTypes()));
+    }
+
+    @FXML
+    public void clearBaseTypeSelection()
+    {
+        queryMonsterType.getSelectionModel().clearSelection();
     }
 
     @FXML
