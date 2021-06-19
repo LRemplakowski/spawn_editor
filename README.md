@@ -10,3 +10,6 @@ Tech stack:
 - Hibernate
 - JavaFX
 - FX Weaver
+
+.jar file association fix:
+https://johann.loefflmann.net/en/software/jarfix/index.html
