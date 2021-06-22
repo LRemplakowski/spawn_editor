@@ -9,6 +9,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -18,6 +21,20 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class App extends Application
 {
     private ConfigurableApplicationContext context;
+
+    private static Stage primaryStage;
+    public static Stage addMonsterStage;
+
+    public static void setPrimaryStageIfNull(Stage primaryStage)
+    {
+        if (primaryStage == null)
+            App.primaryStage = primaryStage;
+    }
+
+    public static Stage getPrimaryStage()
+    {
+        return App.primaryStage;
+    }
 
     @Override
     public void init() throws Exception {

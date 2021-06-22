@@ -2,6 +2,7 @@ package lr.aeris.service;
 
 import lr.aeris.model.SpawnPair;
 import lr.aeris.repositories.SpawnPairRepository;
+import lr.aeris.requests.AddSpawnPairsRequest;
 import lr.aeris.requests.ChangeMonsterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,8 +50,18 @@ public class SpawnPairService {
         repository.deleteAll(originalPairs);
         List<SpawnPair> newPairs = new ArrayList<>();
         request.getSpawnPairs().forEach(p -> newPairs.add(new SpawnPair(resref, p)));
-        if(!newPairs.isEmpty()) {
-            repository.saveAll(newPairs);
-        }
+        repository.saveAll(newPairs);
+    }
+
+    @Transactional
+    public boolean addSpawnPairs(AddSpawnPairsRequest request) {
+        String resref = request.getResref();
+        List<SpawnPair> existingPairs = repository.findByResref(resref);
+        if (!existingPairs.isEmpty())
+            return false;
+        List<SpawnPair> newPairs = new ArrayList<>();
+        request.getSpawnTypes().forEach(t -> newPairs.add(new SpawnPair(resref, t.getType())));
+        repository.saveAll(newPairs);
+        return true;
     }
 }

@@ -5,6 +5,7 @@ import lr.aeris.model.SpawnPair;
 import lr.aeris.model.SpawnRule;
 import lr.aeris.model.SpawnType;
 import lr.aeris.repositories.SpawnMonsterRepository;
+import lr.aeris.requests.AddMonsterRequest;
 import lr.aeris.requests.ChangeMonsterRequest;
 import lr.aeris.requests.SpawnMonsterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +64,19 @@ public class SpawnMonsterService {
             monster.setBaseType(request.getBaseType() != null ? request.getBaseType() : monster.getBaseType());
             repository.save(monster);
         }
+    }
+
+    public boolean addNewMonster(AddMonsterRequest request) {
+        Optional<SpawnMonster> found = repository.findById(request.getResref());
+        if (found.isPresent())
+            return false;
+        SpawnMonster monster = new SpawnMonster();
+        monster.setResref(request.getResref());
+        monster.setName(request.getName());
+        monster.setCr(request.getCr());
+        monster.setBaseType(request.getBaseType().getType());
+        monster.setSpecialLoot(request.getSpecialLoot());
+        repository.save(monster);
+        return true;
     }
 }
