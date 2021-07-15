@@ -19,14 +19,20 @@ public class SpawnRuleService {
         this.repository = repository;
     }
 
-    public List<String> findRulesByAreatag(String areatag){
+    public List<String> findRulesByAreatag(String areatag) {
         List<String> result = new ArrayList<>();
         repository.findByAreatag(areatag).forEach(r -> result.add(r.getRule()));
         return result;
     }
 
+    public List<String> findAreatagsByAssignedRule(String rule) {
+        List<String> result = new ArrayList<>();
+        repository.findByRule(rule).forEach(r -> result.add(r.getAreatag()));
+        return result;
+    }
+
     @Transactional
-    public void saveEditedSpawnRules(ChangeAreaRequest request){
+    public void saveEditedSpawnRules(ChangeAreaRequest request) {
         String areatag = request.getTag();
         List<SpawnRule> originalRules = repository.findByAreatag(areatag);
         repository.deleteAll(originalRules);

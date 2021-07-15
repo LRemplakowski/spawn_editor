@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lr.aeris.controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="780.0" style="-fx-background-color: #F0F0F0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lr.aeris.controller.MainController">
     <children>
-      <TabPane layoutX="10.0" layoutY="24.0" prefHeight="546.0" prefWidth="780.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane layoutX="10.0" layoutY="25.0" prefHeight="624.0" prefWidth="780.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <tabs>
           <Tab text="Lokacje">
               <content>
@@ -20,10 +23,19 @@
           </Tab>
           <Tab text="Kategorie">
               <content>
-                <fx:include fx:id="typePage" source="typePage.fxml"/>
+                <fx:include fx:id="typePage" source="typePage.fxml" />
               </content>
           </Tab>
         </tabs>
       </TabPane>
+      <MenuBar nodeOrientation="LEFT_TO_RIGHT" prefWidth="780.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Dodaj">
+            <items>
+              <MenuItem fx:id="addNewMonster" mnemonicParsing="false" onAction="#onAddNewMonster" text="Nowy wpis potwora" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
     </children>
 </AnchorPane>

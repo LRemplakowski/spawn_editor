@@ -2,9 +2,11 @@ package lr.aeris.service;
 
 import lr.aeris.model.Area;
 import lr.aeris.model.SpawnArea;
+import lr.aeris.model.SpawnMonster;
 import lr.aeris.repositories.SpawnAreaRepository;
 import lr.aeris.requests.ChangeAreaRequest;
 import lr.aeris.requests.SpawnAreaRequest;
+import lr.aeris.requests.SpawnMonsterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,11 +20,16 @@ import java.util.stream.Collectors;
 public class SpawnAreaService {
     private final SpawnAreaRepository repository;
     private final AreaService areaService;
+    private final SpawnRuleService spawnRuleService;
+    private final SpawnMonsterService spawnMonsterService;
 
     @Autowired
-    public SpawnAreaService(SpawnAreaRepository repository, AreaService areaService) {
+    public SpawnAreaService(SpawnAreaRepository repository, AreaService areaService,
+                            SpawnRuleService spawnRuleService, SpawnMonsterService spawnMonsterService) {
         this.repository = repository;
         this.areaService = areaService;
+        this.spawnRuleService = spawnRuleService;
+        this.spawnMonsterService = spawnMonsterService;
     }
 
     public List<SpawnArea> getAllAreas(){
@@ -38,17 +45,38 @@ public class SpawnAreaService {
 
     public List<SpawnArea> findByQuery(SpawnAreaRequest request) {
         List<SpawnArea> areaList;
-        if(!request.getName().equals("")) {
+        if(!request.getName().trim().isEmpty()) {
             areaList = getSpawnAreasByName(request.getName());
-            if(!request.getTag().equals("")) {
+            if(!request.getTag().trim().isEmpty()) {
                 areaList = areaList.stream()
                         .filter(a -> a.getTag().contains(request.getTag()))
                         .collect(Collectors.toList());
             }
-        } else if(request.getTag().equals("")) {
+        } else if(request.getTag().trim().isEmpty()) {
             areaList = repository.findAll();
         } else {
             areaList = repository.findByTagContainingIgnoreCase(request.getTag());
+        }
+        if (!request.getMonsterType().trim().isEmpty()) {
+            List<String> tagsContainingRule = spawnRuleService.findAreatagsByAssignedRule(request.getMonsterType());
+            areaList = areaList.stream()
+                    .filter(a -> tagsContainingRule.contains(a.getTag()))
+                    .collect(Collectors.toList());
+        }
+        if (!request.getMonsterName().trim().isEmpty() || !request.getMonsterResref().trim().isEmpty()) {
+            List<SpawnMonster> monsters = spawnMonsterService
+                    .findMonstersMatchingQuery(
+                            new SpawnMonsterRequest(request.getMonsterName(),
+                                    request.getMonsterResref(),
+                                    "",
+                                    null));
+            List<SpawnArea> areasMatchingMonsterNameAndResref = repository.findSpawnAreasByMonsterNameAndResref(
+                    request.getMonsterName().trim().isEmpty() ? "%" : "%"+request.getMonsterName()+"%",
+                    request.getMonsterResref().trim().isEmpty() ? "%" : "%"+request.getMonsterResref()+"%"
+            );
+            areaList = areaList.stream()
+                    .filter(a -> areasMatchingMonsterNameAndResref.stream().anyMatch(aa -> aa.getTag().equals(a.getTag())))
+                    .collect(Collectors.toList());
         }
         areaList = areaList.stream()
                 .filter(a -> a.getCrmin() >= request.getCrMin())

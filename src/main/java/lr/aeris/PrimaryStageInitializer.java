@@ -15,11 +15,18 @@ import java.util.Objects;
 @Component
 public class PrimaryStageInitializer implements ApplicationListener<StageReadyEvent> {
 
+    private static PrimaryStageInitializer INSTANCE;
+
     private final FxWeaver fxWeaver;
 
     @Autowired
-    public PrimaryStageInitializer(FxWeaver fxWeaver) {
+    private PrimaryStageInitializer(FxWeaver fxWeaver) {
         this.fxWeaver = fxWeaver;
+        PrimaryStageInitializer.INSTANCE = this;
+    }
+
+    public static PrimaryStageInitializer getInstance() {
+        return PrimaryStageInitializer.INSTANCE;
     }
 
     @Override
@@ -29,6 +36,7 @@ public class PrimaryStageInitializer implements ApplicationListener<StageReadyEv
         stage.setScene(scene);
         stage.setTitle("Spawn Editor v0.3");
         stage.getIcons().add(new Image(Objects.requireNonNull(PrimaryStageInitializer.class.getResourceAsStream("/icon.png"))));
+        App.setPrimaryStageIfNull(stage);
         stage.show();
     }
 }
