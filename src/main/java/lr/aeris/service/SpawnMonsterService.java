@@ -5,7 +5,9 @@ import lr.aeris.model.SpawnPair;
 import lr.aeris.model.SpawnRule;
 import lr.aeris.model.SpawnType;
 import lr.aeris.repositories.SpawnMonsterRepository;
+import lr.aeris.requests.AddMonsterRequest;
 import lr.aeris.requests.ChangeMonsterRequest;
+import lr.aeris.requests.DeleteMonsterRequest;
 import lr.aeris.requests.SpawnMonsterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,14 +34,14 @@ public class SpawnMonsterService {
 
     public List<SpawnMonster> findMonstersMatchingQuery(SpawnMonsterRequest request){
         List<SpawnMonster> result;
-        if(!request.getResref().isEmpty()){
+        if(!request.getResref().trim().isEmpty()){
             result = repository.findByResrefContainingIgnoreCase(request.getResref());
         } else {
             result = repository.findAll();
         }
 
         List<String> resrefsPairedWithType = new ArrayList<>();
-        if(!request.getBaseType().getType().isEmpty())
+        if(!request.getBaseType().getType().trim().isEmpty())
         {
             resrefsPairedWithType = spawnPairService.getResrefsPairedWithType(request.getBaseType().getType());
         }
@@ -48,7 +50,7 @@ public class SpawnMonsterService {
         result = result.stream()
                 .filter(r -> r.getName().toLowerCase().contains(request.getName().toLowerCase()))
                 .filter(r -> request.getCr() <= -1 || r.getCr().equals(request.getCr()))
-                .filter(r -> request.getBaseType().getType().isEmpty() || finalResrefsPairedWithType.contains(r.getResref()))
+                .filter(r -> request.getBaseType().getType().trim().isEmpty() || finalResrefsPairedWithType.contains(r.getResref()))
                 .collect(Collectors.toList());
 
         return result;
@@ -62,6 +64,32 @@ public class SpawnMonsterService {
             monster.setCr(request.getCr() != null ? request.getCr() : monster.getCr());
             monster.setBaseType(request.getBaseType() != null ? request.getBaseType() : monster.getBaseType());
             repository.save(monster);
+        }
+    }
+
+    @Transactional
+    public boolean addNewMonster(AddMonsterRequest request) {
+        Optional<SpawnMonster> found = repository.findById(request.getResref());
+        if (found.isPresent())
+            return false;
+        SpawnMonster monster = new SpawnMonster();
+        monster.setResref(request.getResref());
+        monster.setName(request.getName());
+        monster.setCr(request.getCr());
+        monster.setBaseType(request.getBaseType().getType());
+        monster.setSpecialLoot(request.getSpecialLoot());
+        repository.save(monster);
+        return true;
+    }
+
+    @Transactional
+    public boolean deleteMonster(DeleteMonsterRequest request) {
+        Optional<SpawnMonster> found = repository.findById(request.getResref());
+        if (found.isPresent()) {
+            repository.delete(found.get());
+            return true;
+        } else {
+            return false;
         }
     }
 }

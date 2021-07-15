@@ -1,5 +1,9 @@
 package lr.aeris.requests;
 
+import lombok.Getter;
+import lr.aeris.model.SpawnType;
+
+@Getter
 public class SpawnAreaRequest {
     private final String tag;
     private final String name;
@@ -9,6 +13,9 @@ public class SpawnAreaRequest {
     private final Integer maxMobs;
     private final Integer hasSpawn;
     private final Integer cooldown;
+    private final String monsterName;
+    private final String monsterResref;
+    private final String monsterType;
 
     @Override
     public String toString() {
@@ -23,7 +30,10 @@ public class SpawnAreaRequest {
                 '}';
     }
 
-    public SpawnAreaRequest(String tag, String name, String crMin, String crMax, String minMobs, String maxMobs, Boolean hasSpawn, String cooldown) {
+    public SpawnAreaRequest(String tag, String name, String crMin, String crMax,
+                            String minMobs, String maxMobs, Boolean hasSpawn,
+                            String cooldown, String monsterName, String monsterResref,
+                            String monsterType) {
         this.tag = tag;
         this.name = name;
         this.crMin = !crMin.equals("") ? Integer.parseInt(crMin) : Integer.MIN_VALUE;
@@ -32,38 +42,8 @@ public class SpawnAreaRequest {
         this.maxMobs = !maxMobs.equals("") ? Integer.parseInt(crMax) : Integer.MAX_VALUE;
         this.hasSpawn = hasSpawn ? 1 : 0;
         this.cooldown = !cooldown.equals("") ? Integer.parseInt(cooldown) : Integer.MIN_VALUE;
+        this.monsterName = monsterName;
+        this.monsterResref = monsterResref;
+        this.monsterType = monsterType;
     }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getCrMin() {
-        return crMin;
-    }
-
-    public Integer getCrMax() {
-        return crMax;
-    }
-
-    public Integer getMinMobs() {
-        return minMobs;
-    }
-
-    public Integer getMaxMobs() {
-        return maxMobs;
-    }
-
-    public Integer getHasSpawn() {
-        return hasSpawn;
-    }
-
-    public Integer getCooldown() {
-        return cooldown;
-    }
-
 }

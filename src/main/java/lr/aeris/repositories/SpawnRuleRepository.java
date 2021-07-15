@@ -16,4 +16,6 @@ public interface SpawnRuleRepository extends JpaRepository<SpawnRule, String> {
 
     @Query(value = "SELECT r FROM SpawnRule r WHERE r.areatag=:areatag")
     List<SpawnRule> findByAreatag(String areatag);
+
+    List<SpawnRule> findByRule(String rule);
 }

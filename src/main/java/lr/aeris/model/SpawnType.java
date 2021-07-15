@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "spawn_types")
 @Data
 @NoArgsConstructor
-public class SpawnType {
+public class SpawnType implements Comparable<SpawnType>{
     @Id
     private String type = "";
 
@@ -26,5 +26,10 @@ public class SpawnType {
     @Override
     public String toString() {
         return type;
+    }
+
+    @Override
+    public int compareTo(SpawnType o) {
+        return type.compareTo(o.getType());
     }
 }

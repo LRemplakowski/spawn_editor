@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import lr.aeris.eventHandlers.SelectAreaHandler;
 import lr.aeris.model.SpawnArea;
+import lr.aeris.model.SpawnType;
 import lr.aeris.requests.ChangeAreaRequest;
 import lr.aeris.requests.SpawnAreaRequest;
 import lr.aeris.service.AreaService;
@@ -84,6 +85,12 @@ public class AreaPageController {
     private Button buttonDiscardChanges;
     @FXML
     private Button buttonSave;
+    @FXML
+    private TextField monsterName;
+    @FXML
+    private TextField monsterResref;
+    @FXML
+    private ChoiceBox<SpawnType> monsterType;
 
     public AreaPageController(SpawnAreaService spawnAreaService, SpawnRuleService ruleService, SpawnTypeService typeService, AreaService areaService) {
         this.spawnAreaService = spawnAreaService;
@@ -94,6 +101,10 @@ public class AreaPageController {
 
     @FXML
     public void initialize(){
+        List<SpawnType> types = typeService.findAllTypes();
+        monsterType.setItems(FXCollections.observableList(types));
+        monsterType.getItems().add(0, new SpawnType());
+        monsterType.getSelectionModel().select(0);
         queryHasspawn.setSelected(true);
         //Forces fields to take only proper input
         queryMinCr.textProperty().addListener(new ChangeListener<String>() {
@@ -208,7 +219,10 @@ public class AreaPageController {
                 queryMinMobs.getText(),
                 queryMaxMobs.getText(),
                 queryHasspawn.isSelected(),
-                queryCooldown.getText());
+                queryCooldown.getText(),
+                monsterName.getText(),
+                monsterResref.getText(),
+                monsterType.getValue().getType());
         System.out.println(request.toString());
         ObservableList<SpawnArea> observableList = FXCollections.observableList(spawnAreaService.findByQuery(request));
         areaList.setItems(observableList);

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="159.0" prefWidth="346.0" style="-fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lr.aeris.controller.ConfirmationPopupController">
+   <children>
+      <Pane layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="292.0" style="-fx-background-color: grey; -fx-background-radius: 20 20 0 0; -fx-border-color: black; -fx-border-radius: 20 20 0 0;" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Uwaga!" wrappingWidth="148.13671875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutY="38.0" prefHeight="121.0" prefWidth="346.0" style="-fx-background-radius: 0 0 20 20; -fx-border-color: black; -fx-border-radius: 0 0 20 20;">
+         <children>
+            <Text layoutX="18.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chcesz zrobić coś ryzykownego." wrappingWidth="294.00000071525574">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="18.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Czy na pewno chcesz wykonać tą operację?" wrappingWidth="324.00000071525574">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <ButtonBar layoutX="28.0" layoutY="82.0" prefHeight="25.0" prefWidth="294.0">
+               <buttons>
+                  <Button fx:id="buttonCancel" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="91.0" text="Nie" translateX="-110.0" />
+                  <Button fx:id="buttonContinue" layoutX="213.0" layoutY="10.0" mnemonicParsing="false" onAction="#proceed" prefHeight="25.0" prefWidth="91.0" text="Tak" />
+               </buttons>
+            </ButtonBar>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
