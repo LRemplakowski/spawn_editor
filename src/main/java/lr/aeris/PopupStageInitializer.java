@@ -38,4 +38,16 @@ public class PopupStageInitializer {
         stage.show();
         return stage;
     }
+
+    public <C> Stage initializePopup(Class<C> controllerClass, Stage owner) {
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxWeaver.loadView(controllerClass));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(owner);
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+        stage.show();
+        return stage;
+    }
 }

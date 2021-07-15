@@ -11,12 +11,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="600.0" style="-fx-background-radius: 20,20,20,20; -fx-border-color: #101010; -fx-border-radius: 20,20,20,20; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lr.aeris.controller.AddMonsterController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="472.0" style="-fx-background-radius: 20,20,20,20; -fx-border-color: #101010; -fx-border-radius: 20,20,20,20; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lr.aeris.controller.AddMonsterController">
    <children>
-      <AnchorPane prefHeight="404.0" prefWidth="600.0">
+      <AnchorPane prefHeight="404.0" prefWidth="472.0">
          <children>
-            <Pane prefHeight="404.0" prefWidth="600.0">
+            <Pane prefHeight="404.0" prefWidth="472.0">
                <children>
                   <Pane layoutX="14.0" layoutY="14.0" prefWidth="440.0">
                      <children>
@@ -76,7 +75,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <ButtonBar layoutX="168.0" layoutY="420.0" prefHeight="40.0" prefWidth="264.0">
+      <ButtonBar layoutX="104.0" layoutY="420.0" prefHeight="40.0" prefWidth="264.0">
          <buttons>
             <Button fx:id="buttonClose" mnemonicParsing="false" onAction="#onClose" prefHeight="25.0" prefWidth="104.0" text="Anuluj" translateX="-48.0" />
             <Button fx:id="buttonSave" layoutX="140.0" layoutY="18.0" mnemonicParsing="false" onAction="#addMonsterEntry" text="Dodaj" />

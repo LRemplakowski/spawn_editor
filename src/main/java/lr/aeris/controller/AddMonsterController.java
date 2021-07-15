@@ -4,18 +4,20 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.stage.Popup;
 import lr.aeris.App;
+import lr.aeris.PopupStageInitializer;
 import lr.aeris.model.SpawnType;
 import lr.aeris.requests.AddMonsterRequest;
 import lr.aeris.requests.AddSpawnPairsRequest;
 import lr.aeris.service.SpawnMonsterService;
 import lr.aeris.service.SpawnPairService;
 import lr.aeris.service.SpawnTypeService;
+import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 
@@ -146,8 +148,10 @@ public class AddMonsterController {
     @FXML
     public void addMonsterEntry() {
         System.out.println("Saving entry!");
-        if (resrefField.getText().equals(""))
+        if (resrefField.getText().equals("")) {
+            App.addMonsterErrorPopup = PopupStageInitializer.getInstance().initializePopup(SmallPopupController.class, App.addMonsterStage);
             return;
+        }
         AddMonsterRequest addMonsterRequest = new AddMonsterRequest
                 .AddMonsterRequestBuilder(resrefField.getText())
                 .setBaseType(baseTypeDropdown.getSelectionModel().getSelectedItem())

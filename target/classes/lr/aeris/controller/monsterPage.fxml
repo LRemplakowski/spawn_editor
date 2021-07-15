@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lr.aeris.controller.MonsterPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lr.aeris.controller.MonsterPageController">
    <children>
-      <Pane prefHeight="576.0" prefWidth="780.0">
+      <Pane prefHeight="672.0" prefWidth="780.0">
          <children>
-            <Pane layoutX="14.0" layoutY="14.0" prefHeight="541.0" prefWidth="269.0">
+            <Pane layoutX="14.0" layoutY="14.0" prefHeight="640.0" prefWidth="269.0">
                <children>
                   <TitledPane animated="false" collapsible="false" maxWidth="269.0" prefHeight="311.0" prefWidth="269.0" text="Wyszukiwanie">
                      <content>
@@ -26,7 +26,7 @@
                               <TextField fx:id="queryMonsterCr" layoutX="14.0" layoutY="52.0" prefHeight="25.0" prefWidth="100.0" promptText="CR potwora" />
                               <Pane layoutX="14.0" layoutY="88.0">
                                  <children>
-                                    <TitledPane collapsible="false" prefHeight="145.0" prefWidth="233.0" text="Typ potwora:">
+                                    <TitledPane collapsible="false" prefHeight="145.0" prefWidth="233.0" text="Kategoria potwora:">
                                        <content>
                                           <ListView fx:id="queryMonsterType" prefHeight="104.0" prefWidth="220.0" />
                                        </content>
@@ -40,20 +40,20 @@
                         </AnchorPane>
                      </content>
                   </TitledPane>
-                  <TitledPane animated="false" collapsible="false" layoutY="328.0" prefHeight="216.0" prefWidth="269.0" text="Lista potworów:">
+                  <TitledPane animated="false" collapsible="false" layoutY="328.0" prefHeight="310.0" prefWidth="269.0" text="Lista potworów:">
                      <content>
                         <ListView fx:id="spawnMonsterList" prefHeight="181.0" prefWidth="278.0" />
                      </content>
                   </TitledPane>
                </children>
             </Pane>
-            <Pane layoutX="298.0" layoutY="15.0" prefHeight="541.0" prefWidth="476.0">
+            <Pane layoutX="298.0" layoutY="15.0" prefHeight="640.0" prefWidth="476.0">
                <children>
-                  <TitledPane animated="false" collapsible="false" prefHeight="436.0" prefWidth="476.0" text="Właściwości potwora:">
+                  <TitledPane animated="false" collapsible="false" prefHeight="574.0" prefWidth="476.0" text="Właściwości potwora:">
                      <content>
                         <AnchorPane prefHeight="404.0" prefWidth="474.0">
                            <children>
-                              <Pane>
+                              <Pane prefHeight="532.0" prefWidth="454.0">
                                  <children>
                                     <Pane layoutX="14.0" layoutY="14.0" prefWidth="440.0">
                                        <children>
@@ -81,20 +81,20 @@
                                           </Pane>
                                           <Pane layoutX="273.0" prefHeight="56.0" prefWidth="167.0">
                                              <children>
-                                                <Label layoutY="6.0" prefHeight="16.0" prefWidth="91.0" text="Typ bazowy:" textAlignment="CENTER" />
+                                                <Label layoutY="6.0" prefHeight="16.0" prefWidth="91.0" text="Typ lootu:" textAlignment="CENTER" />
                                                 <ChoiceBox fx:id="selectedBaseType" layoutY="24.0" prefHeight="25.0" prefWidth="167.0" />
                                              </children>
                                           </Pane>
                                        </children>
                                     </Pane>
-                                    <Pane layoutX="16.0" layoutY="152.0">
+                                    <Pane layoutX="16.0" layoutY="152.0" prefHeight="377.0" prefWidth="437.0">
                                        <children>
-                                          <TitledPane collapsible="false" prefHeight="238.0" prefWidth="167.0" text="Nieprzydzielone kategorie:">
+                                          <TitledPane collapsible="false" prefHeight="372.0" prefWidth="167.0" text="Nieprzydzielone kategorie:">
                                              <content>
                                                 <ListView fx:id="selectedOtherTypesList" prefHeight="185.0" prefWidth="165.0" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane collapsible="false" layoutX="270.0" prefHeight="238.0" prefWidth="167.0" text="Kategorie potwora:">
+                                          <TitledPane collapsible="false" layoutX="270.0" prefHeight="372.0" prefWidth="167.0" text="Kategorie potwora:">
                                              <content>
                                                 <ListView fx:id="selectedMonsterTypesList" prefHeight="200.0" prefWidth="158.0" />
                                              </content>
@@ -115,10 +115,11 @@
                         </AnchorPane>
                      </content>
                   </TitledPane>
-                  <ButtonBar layoutX="104.0" layoutY="503.0" prefHeight="40.0" prefWidth="264.0">
+                  <ButtonBar layoutX="11.0" layoutY="586.0" prefHeight="40.0" prefWidth="459.0">
                      <buttons>
-                        <Button fx:id="buttonDiscardChanges" mnemonicParsing="false" onAction="#discardChanges" prefHeight="25.0" prefWidth="104.0" text="Odrzuć zmiany" translateX="-48.0" />
-                        <Button fx:id="buttonSave" layoutX="140.0" layoutY="18.0" mnemonicParsing="false" onAction="#saveChanges" text="Zapisz" />
+                        <Button fx:id="buttonDiscardChanges" mnemonicParsing="false" onAction="#discardChanges" prefHeight="25.0" prefWidth="104.0" text="Odrzuć zmiany" translateX="100.0" />
+                        <Button fx:id="buttonSave" layoutX="140.0" layoutY="18.0" mnemonicParsing="false" onAction="#saveChanges" text="Zapisz" translateX="100.0" />
+                        <Button fx:id="deleteMonsterButton" mnemonicParsing="false" onAction="#deleteMonsterPopup" text="Usuń wpis" translateX="-350.0" />
                      </buttons>
                   </ButtonBar>
                </children>

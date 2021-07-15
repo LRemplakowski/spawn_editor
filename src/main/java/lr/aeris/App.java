@@ -24,6 +24,8 @@ public class App extends Application
 
     private static Stage primaryStage;
     public static Stage addMonsterStage;
+    public static Stage addMonsterErrorPopup;
+    public static Stage deleteMonsterConfirmationPopup;
 
     public static void setPrimaryStageIfNull(Stage primaryStage)
     {

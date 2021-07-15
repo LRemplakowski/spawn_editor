@@ -12,10 +12,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import lr.aeris.App;
+import lr.aeris.PopupStageInitializer;
 import lr.aeris.eventHandlers.SelectMonsterHandler;
 import lr.aeris.model.SpawnMonster;
 import lr.aeris.model.SpawnType;
 import lr.aeris.requests.ChangeMonsterRequest;
+import lr.aeris.requests.DeleteMonsterRequest;
 import lr.aeris.requests.SpawnMonsterRequest;
 import lr.aeris.service.SpawnMonsterService;
 import lr.aeris.service.SpawnPairService;
@@ -72,6 +75,8 @@ public class MonsterPageController {
     private Button buttonSave;
     @FXML
     private Button buttonClearSelection;
+    @FXML
+    private Button deleteMonsterButton;
 
     public MonsterPageController(SpawnMonsterService monsterService, SpawnTypeService typeService, SpawnPairService pairService) {
         this.monsterService = monsterService;
@@ -197,6 +202,21 @@ public class MonsterPageController {
     @FXML
     public void discardChanges() {
         clearMonsterSelection();
+    }
+
+    @FXML
+    private void deleteMonsterPopup() {
+        if (spawnMonsterList.getSelectionModel().getSelectedItem() != null)
+            App.deleteMonsterConfirmationPopup = PopupStageInitializer.getInstance().initializePopup(ConfirmationPopupController.class);
+    }
+
+    public void requestDeleteMonsterEntry() {
+        if (spawnMonsterList.getSelectionModel().getSelectedItem() != null) {
+            if (monsterService.deleteMonster(new DeleteMonsterRequest(spawnMonsterList.getSelectionModel().getSelectedItem().getResref()))) {
+                clearMonsterSelection();
+                listMonstersMatchingQuery();
+            }
+        }
     }
 
     public ListView<SpawnMonster> getSpawnMonsterList() {
