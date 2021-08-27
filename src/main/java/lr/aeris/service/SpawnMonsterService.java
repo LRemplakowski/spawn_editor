@@ -50,8 +50,8 @@ public class SpawnMonsterService {
         List<SpawnMonster> monstersPairedWithArea = new ArrayList<>();
         if(!request.getAreaName().trim().isEmpty() || !request.getAreaTag().trim().isEmpty())
         {
-            String areaName = request.getAreaName().trim().isEmpty() ? "%" : request.getAreaName();
-            String areaTag = request.getAreaTag().trim().isEmpty() ? "%" : request.getAreaTag();
+            String areaName = "%" + request.getAreaName().trim() + "%";
+            String areaTag = "%" + request.getAreaTag().trim() + "%";
             monstersPairedWithArea = repository.findByAreaNameAndTag(areaName, areaTag);
         }
         List<SpawnMonster> finalMonstersPairedWithArea = monstersPairedWithArea;
