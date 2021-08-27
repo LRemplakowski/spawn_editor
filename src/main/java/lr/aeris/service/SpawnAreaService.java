@@ -69,7 +69,9 @@ public class SpawnAreaService {
                             new SpawnMonsterRequest(request.getMonsterName(),
                                     request.getMonsterResref(),
                                     "",
-                                    null));
+                                    null,
+                                    "",
+                                    ""));
             List<SpawnArea> areasMatchingMonsterNameAndResref = repository.findSpawnAreasByMonsterNameAndResref(
                     request.getMonsterName().trim().isEmpty() ? "%" : "%"+request.getMonsterName()+"%",
                     request.getMonsterResref().trim().isEmpty() ? "%" : "%"+request.getMonsterResref()+"%"

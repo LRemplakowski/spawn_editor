@@ -47,10 +47,20 @@ public class SpawnMonsterService {
         }
         List<String> finalResrefsPairedWithType = resrefsPairedWithType;
 
+        List<SpawnMonster> monstersPairedWithArea = new ArrayList<>();
+        if(!request.getAreaName().trim().isEmpty() || !request.getAreaTag().trim().isEmpty())
+        {
+            String areaName = request.getAreaName().trim().isEmpty() ? "%" : request.getAreaName();
+            String areaTag = request.getAreaTag().trim().isEmpty() ? "%" : request.getAreaTag();
+            monstersPairedWithArea = repository.findByAreaNameAndTag(areaName, areaTag);
+        }
+        List<SpawnMonster> finalMonstersPairedWithArea = monstersPairedWithArea;
+
         result = result.stream()
                 .filter(r -> r.getName().toLowerCase().contains(request.getName().toLowerCase()))
                 .filter(r -> request.getCr() <= -1 || r.getCr().equals(request.getCr()))
                 .filter(r -> request.getBaseType().getType().trim().isEmpty() || finalResrefsPairedWithType.contains(r.getResref()))
+                .filter(r -> finalMonstersPairedWithArea.isEmpty() || finalMonstersPairedWithArea.contains(r))
                 .collect(Collectors.toList());
 
         return result;

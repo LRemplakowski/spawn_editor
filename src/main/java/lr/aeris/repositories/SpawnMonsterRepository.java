@@ -14,4 +14,11 @@ public interface SpawnMonsterRepository extends JpaRepository<SpawnMonster, Stri
     List<SpawnMonster> findByResref(String resref);
 
     List<SpawnMonster> findByResrefContainingIgnoreCase(String resref);
+
+    @Query(value = "SELECT m FROM SpawnMonster m WHERE m.resref IN " +
+            "(SELECT p.resref FROM SpawnPair p WHERE p.type IN " +
+            "(SELECT r.rule FROM SpawnRule r WHERE r.areatag IN " +
+            "(SELECT a.tag FROM SpawnArea a WHERE a.tag LIKE :areaTag AND a.tag IN " +
+            "(SELECT aa.tag FROM Area aa WHERE aa.fullName LIKE :areaName))))")
+    List<SpawnMonster> findByAreaNameAndTag(String areaName, String areaTag);
 }

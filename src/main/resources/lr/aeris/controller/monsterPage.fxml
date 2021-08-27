@@ -17,9 +17,9 @@
          <children>
             <Pane layoutX="14.0" layoutY="14.0" prefHeight="640.0" prefWidth="269.0">
                <children>
-                  <TitledPane animated="false" collapsible="false" maxWidth="269.0" prefHeight="311.0" prefWidth="269.0" text="Wyszukiwanie">
+                  <TitledPane animated="false" collapsible="false" maxWidth="269.0" prefHeight="378.0" prefWidth="269.0" text="Wyszukiwanie">
                      <content>
-                        <AnchorPane prefHeight="285.0" prefWidth="267.0">
+                        <AnchorPane prefHeight="356.0" prefWidth="267.0">
                            <children>
                               <TextField fx:id="queryMonsterName" layoutX="147.0" layoutY="52.0" prefHeight="25.0" prefWidth="100.0" promptText="Nazwa potwora" />
                               <TextField fx:id="queryMonsterResref" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="233.0" promptText="Resref potwora" />
@@ -34,13 +34,15 @@
                                     <Button fx:id="buttonClearSelection" layoutX="125.0" mnemonicParsing="false" onAction="#clearBaseTypeSelection" prefHeight="25.0" prefWidth="108.0" text="Wyczyść wybór" />
                                  </children>
                               </Pane>
-                              <Button fx:id="buttonFindQuery" layoutX="167.0" layoutY="250.0" mnemonicParsing="false" onAction="#listMonstersMatchingQuery" prefHeight="25.0" prefWidth="80.0" text="Wyszukaj" />
-                              <Button fx:id="buttonFindAll" layoutX="14.0" layoutY="250.0" mnemonicParsing="false" onAction="#listAllMonsters" prefHeight="25.0" prefWidth="110.0" text="Znajdź wszystkie" />
+                              <Button fx:id="buttonFindQuery" layoutX="167.0" layoutY="313.0" mnemonicParsing="false" onAction="#listMonstersMatchingQuery" prefHeight="25.0" prefWidth="80.0" text="Wyszukaj" />
+                              <Button fx:id="buttonFindAll" layoutX="14.0" layoutY="313.0" mnemonicParsing="false" onAction="#listAllMonsters" prefHeight="25.0" prefWidth="110.0" text="Znajdź wszystkie" />
+                              <TextField fx:id="queryMonsterAreaName" layoutX="14.0" layoutY="241.0" prefHeight="25.0" prefWidth="233.0" promptText="Nazwa obszaru" />
+                              <TextField fx:id="queryMonsterAreaTag" layoutX="14.0" layoutY="277.0" prefHeight="25.0" prefWidth="233.0" promptText="Tag obszaru" />
                            </children>
                         </AnchorPane>
                      </content>
                   </TitledPane>
-                  <TitledPane animated="false" collapsible="false" layoutY="328.0" prefHeight="310.0" prefWidth="269.0" text="Lista potworów:">
+                  <TitledPane animated="false" collapsible="false" layoutY="396.0" prefHeight="242.0" prefWidth="269.0" text="Lista potworów:">
                      <content>
                         <ListView fx:id="spawnMonsterList" prefHeight="181.0" prefWidth="278.0" />
                      </content>

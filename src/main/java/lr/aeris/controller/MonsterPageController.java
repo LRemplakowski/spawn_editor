@@ -44,6 +44,10 @@ public class MonsterPageController {
     @FXML
     private ListView<SpawnType> queryMonsterType;
     @FXML
+    private TextField queryMonsterAreaName;
+    @FXML
+    private TextField queryMonsterAreaTag;
+    @FXML
     private Button buttonFindQuery;
     @FXML
     private Button buttonFindAll;
@@ -116,7 +120,12 @@ public class MonsterPageController {
 
     @FXML
     public void listMonstersMatchingQuery(){
-        SpawnMonsterRequest request = new SpawnMonsterRequest(queryMonsterResref.getText(), queryMonsterName.getText(), queryMonsterCr.getText(), queryMonsterType.getSelectionModel().getSelectedItem());
+        SpawnMonsterRequest request = new SpawnMonsterRequest(queryMonsterResref.getText(),
+                queryMonsterName.getText(),
+                queryMonsterCr.getText(),
+                queryMonsterType.getSelectionModel().getSelectedItem(),
+                queryMonsterAreaName.getText(),
+                queryMonsterAreaTag.getText());
         spawnMonsterList.setItems(FXCollections.observableList(monsterService.findMonstersMatchingQuery(request)));
         clearMonsterSelection();
     }

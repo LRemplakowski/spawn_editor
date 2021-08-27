@@ -1,17 +1,19 @@
 package lr.aeris.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "spawn_monsters")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 public class SpawnMonster {
     private String name;
     @Id
