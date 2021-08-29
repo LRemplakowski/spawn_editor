@@ -29,15 +29,15 @@ public class SpawnMonsterService {
     }
 
     public List<SpawnMonster> findAllMonsters(){
-        return repository.findAll();
+        return repository.findAllOrdered();
     }
 
     public List<SpawnMonster> findMonstersMatchingQuery(SpawnMonsterRequest request){
         List<SpawnMonster> result;
         if(!request.getResref().trim().isEmpty()){
-            result = repository.findByResrefContainingIgnoreCase(request.getResref());
+            result = repository.findByResrefContainingIgnoreCaseOrderByName(request.getResref());
         } else {
-            result = repository.findAll();
+            result = repository.findAllOrdered();
         }
 
         List<String> resrefsPairedWithType = new ArrayList<>();
@@ -101,5 +101,9 @@ public class SpawnMonsterService {
         } else {
             return false;
         }
+    }
+
+    public List<SpawnMonster> findMonstersWithNoSpawnArea() {
+        return repository.findAllWithNoSpawnArea();
     }
 }

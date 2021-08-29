@@ -81,6 +81,8 @@ public class MonsterPageController {
     private Button buttonClearSelection;
     @FXML
     private Button deleteMonsterButton;
+    @FXML
+    private Button buttonListNonSpawning;
 
     public MonsterPageController(SpawnMonsterService monsterService, SpawnTypeService typeService, SpawnPairService pairService) {
         this.monsterService = monsterService;
@@ -93,16 +95,16 @@ public class MonsterPageController {
         queryMonsterCr.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    queryMonsterCr.setText(newValue.replaceAll("[^\\d]", ""));
+                if (!newValue.matches("-?\\d*")) {
+                    queryMonsterCr.setText(oldValue);
                 }
             }
         });
         selectedCr.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")) {
-                    selectedCr.setText(newValue.replaceAll("[^\\d]", ""));
+                if(!newValue.matches("-?\\d*")) {
+                    selectedCr.setText(oldValue);
                 }
             }
         });
@@ -127,6 +129,12 @@ public class MonsterPageController {
                 queryMonsterAreaName.getText(),
                 queryMonsterAreaTag.getText());
         spawnMonsterList.setItems(FXCollections.observableList(monsterService.findMonstersMatchingQuery(request)));
+        clearMonsterSelection();
+    }
+
+    @FXML
+    public void listMonstersWithNoSpawnArea() {
+        spawnMonsterList.setItems(FXCollections.observableList(monsterService.findMonstersWithNoSpawnArea()));
         clearMonsterSelection();
     }
 
