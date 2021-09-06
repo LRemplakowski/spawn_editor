@@ -34,7 +34,7 @@ public class PrimaryStageInitializer implements ApplicationListener<StageReadyEv
         Stage stage = event.stage;
         Scene scene = new Scene(fxWeaver.loadView(MainController.class));
         stage.setScene(scene);
-        stage.setTitle("Spawn Editor v0.3.2");
+        stage.setTitle("Spawn Editor v0.3.2a");
         stage.getIcons().add(new Image(Objects.requireNonNull(PrimaryStageInitializer.class.getResourceAsStream("/icon.png"))));
         App.setPrimaryStageIfNull(stage);
         stage.show();

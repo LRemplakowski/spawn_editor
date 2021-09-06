@@ -23,34 +23,10 @@ public class SpawnMonster {
     private String baseType;
     @Column(name = "special_loot")
     private String specialLoot;
-
-    public String getName() {
-        return name;
-    }
-
-    public String getResref() {
-        return resref;
-    }
-
-    public Integer getCr() {
-        return cr;
-    }
-
-    public String getBaseType() {
-        return baseType;
-    }
-
-    public String getSpecialLoot() {
-        return specialLoot;
-    }
-
-    public void setCr(Integer cr) {
-        this.cr = cr;
-    }
-
-    public void setBaseType(String baseType) {
-        this.baseType = baseType;
-    }
+    @Column(name = "spawn_chance")
+    private Integer spawnChance;
+    @Column(name = "exp_multiplier")
+    private Float expMultiplier;
 
     @Override
     public String toString() {
